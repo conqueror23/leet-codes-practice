@@ -33,6 +33,7 @@ function permute(nums: number[]): number[][] {
 
 
     if(!rest.length){
+      console.log('=rest--index===',index)
       console.log("elemnts push lenth=0",[nums[index]])
       result.push([nums[index]])
       continue
@@ -46,6 +47,9 @@ function permute(nums: number[]): number[][] {
     console.log("linePush",linePush)
       result.push(linePush)
     }
+
+    console.log("result",result)
+    console.log(`index ${index}`)
   }
 
   return result
