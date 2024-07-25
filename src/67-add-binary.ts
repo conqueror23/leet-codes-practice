@@ -9,7 +9,7 @@
 
 //s2
 function addBinary(a: string, b: string): string {
-let result: string = "";
+  let result: string = "";
 
   let carry = 0;
   for(let i = a.length - 1, j = b.length - 1; i >= 0 || j >= 0; i--, j--) {
