@@ -16,39 +16,39 @@
 // };
 
 function permute(nums: number[]): number[][] {
-  const result:number[][]= []
+  const result: number[][] = []
 
-  for(let index=0;index<nums.length;index++){
-    const slice1 =nums.slice(0,index)
-    const slice2 =nums.slice(index+1)
+  for (let index = 0; index < nums.length; index++) {
+    const slice1 = nums.slice(0, index)
+    const slice2 = nums.slice(index + 1)
     const rest = permute(
       slice1.concat(slice2)
     )
 
     //why this index can be changed 
-    console.log('=====index===',index)
-    console.log("slice1",slice1)
-    console.log("slice2",slice2)
-    console.log("rest",rest)
+    console.log('=====index===', index)
+    console.log("slice1", slice1)
+    console.log("slice2", slice2)
+    console.log("rest", rest)
 
 
-    if(!rest.length){
-      console.log('=rest--index===',index)
-      console.log("elemnts push lenth=0",[nums[index]])
+    if (!rest.length) {
+      console.log('=rest--index===', index)
+      console.log("elemnts push lenth=0", [nums[index]])
       result.push([nums[index]])
       continue
     }
 
     //subPermutation
-    for(let j =0;j<rest.length; j++){
-      const linePush=   
+    for (let j = 0; j < rest.length; j++) {
+      const linePush =
         [nums[index]].concat(rest[j])
-    console.log('-----j----',j)
-    console.log("linePush",linePush)
+      console.log('-----j----', j)
+      console.log("linePush", linePush)
       result.push(linePush)
     }
 
-    console.log("result",result)
+    console.log("result", result)
     console.log(`index ${index}`)
   }
 
@@ -57,6 +57,6 @@ function permute(nums: number[]): number[][] {
 
 
 
-const testCase1 = [1,2,3]
+const testCase1 = [1, 2, 3]
 
-console.log('testCase1',permute(testCase1))
+console.log('testCase1', permute(testCase1))
