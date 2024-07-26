@@ -20,6 +20,7 @@ function helper(node: TreeNode, path: string, result: string[]) {
   if (node.left) helper(node.left, currentPath, result)
   if (node.right) helper(node.right, currentPath, result)
 }
+
 function binaryTreePaths(root: TreeNode | null): string[] {
   const result = []
   helper(root!, "", result)
