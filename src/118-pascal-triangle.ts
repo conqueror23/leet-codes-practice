@@ -1,4 +1,3 @@
-
 function generate(numRows: number): number[][] {
   const refArray: number[][] = []
 

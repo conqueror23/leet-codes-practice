@@ -5,26 +5,23 @@ For example, if words = ["ab","cd","ef"], then "abcdef", "abefcd", "cdabef", "cd
 Return an array of the starting indices of all the concatenated substrings in s. You can return the answer in any order.
 */
 
-
-
-const a = [0, 1 ,2 ,3]
-const b = a.slice(0,1)
+const a = [0, 1, 2, 3]
+const b = a.slice(0, 1)
 console.log(b)
 
 
-
-const permutations=(selections:string[])=>{
+const permutations = (selections: string[]) => {
   const results = new Set()
 
-  for (var i = 0;i ++;i< selections.length-1){
-    const concateSelection = selections 
+  for (let i = 0; i++; i < selections.length - 1) {
+    const concateSelection = selections
     results.add(concateSelection)
 
   }
 
 }
 
-const findSubstring(s: string, words: string[]): number[]=> {
-    
-    
+const findSubstring = (s: string, words: string[]): number[] => {
+  console.log("substrinb action ")
+
 };
