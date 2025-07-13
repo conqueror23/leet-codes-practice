@@ -33,16 +33,17 @@ const board1 = [
   [".", ".", ".", ".", "8", ".", ".", "7", "9"]
 ]
 
+
 const getBlockIndex = (x: number, y: number) => {
   const reminder = Math.floor((x / 3))
   const dividend = Math.floor((y / 3))
 
-  const blockIndex = reminder + 3 * dividend
+  const blockIndex = dividend + 3 * reminder
   return blockIndex
 }
 
 
-const getLatestBoardRef = (board: string[][]) => {
+const getLatestRef = (board: string[][]) => {
   const rowsRef: string[] = Array.from({ length: 9 }, () => "")
   const columnsRef: string[] = Array.from({ length: 9 }, () => "")
   const blocksRef: string[] = Array.from({ length: 9 }, () => "")
@@ -80,7 +81,8 @@ const getAvailableNumbers = (
     .filter((num) => !columnsRef.includes(num))
     .filter((num) => !blockRef.includes(num))
 
-  if (!potentialNumbers) {
+  if (potentialNumbers.length == 0) {
+    console.log("debugging")
     console.log(`rowRef ${rowRef}`)
     console.log(`columnRef ${columnsRef}`)
     console.log(`block ${blockRef}`)
@@ -91,27 +93,35 @@ const getAvailableNumbers = (
 function solveSudoku1(board: string[][]): string[][] {
   // const recordsSet = new Map<number, Set<number | null>>()
 
-  const { rowsRef, columnsRef, blocksRef } = getLatestBoardRef(board)
+  const { rowsRef, columnsRef, blocksRef } = getLatestRef(board)
 
   // console.log("rowsRef", rowsRef)
   // console.log("columnsRef", columnsRef)
   // console.log("blocksRef", blocksRef)
 
+  //this not going to works,
+  //it needs some test and returns
   const potentialBoard = board.map(
     (row, rowIndex) => {
       return row.map(
         (column, columnIndex) => {
           if (column === '.') {
-            const blockIndex = getBlockIndex(rowIndex, columnIndex)
             const rowRef = rowsRef[rowIndex]
             const columnRef = columnsRef[columnIndex]
+            const blockIndex = getBlockIndex(rowIndex, columnIndex)
             const blockRef = blocksRef[blockIndex]
             const availableNumbers = getAvailableNumbers(rowRef, columnRef, blockRef)
             const selectedNumber = availableNumbers[0]
             rowsRef[rowIndex] += selectedNumber
             columnsRef[columnIndex] += selectedNumber
             blocksRef[blockIndex] += selectedNumber
-
+            if (!selectedNumber) {
+              console.log("selectedNumber", availableNumbers)
+              console.log('blockIndex', blockIndex)
+              console.log('rowIndex', rowIndex)
+              console.log('columnIndex', columnIndex)
+            }
+            // console.log("number selcete", selectedNumber)
             return selectedNumber
           }
           return column
