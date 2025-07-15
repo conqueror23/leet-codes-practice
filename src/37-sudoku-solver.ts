@@ -72,7 +72,9 @@ const getLatestRef = (board: string[][]) => {
 }
 
 const getAvailableNumbers = (
-  rowRef: string, columnsRef: string, blockRef: string
+  rowRef: string,
+  columnsRef: string,
+  blockRef: string
 ): string[] => {
   const numBase = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
@@ -85,48 +87,51 @@ const getAvailableNumbers = (
     console.log("debugging")
     console.log(`rowRef ${rowRef}`)
     console.log(`columnRef ${columnsRef}`)
-    console.log(`block ${blockRef}`)
+    console.log(`blockRef ${blockRef}`)
+    console.log(`potentialNumbers ${potentialNumbers}`)
   }
   return potentialNumbers
 }
 
 function solveSudoku1(board: string[][]): string[][] {
   // const recordsSet = new Map<number, Set<number | null>>()
-
   const { rowsRef, columnsRef, blocksRef } = getLatestRef(board)
-
   // console.log("rowsRef", rowsRef)
   // console.log("columnsRef", columnsRef)
   // console.log("blocksRef", blocksRef)
 
   //this not going to works,
   //it needs some test and returns
-  const potentialBoard = board.map(
-    (row, rowIndex) => {
-      return row.map(
-        (column, columnIndex) => {
-          if (column === '.') {
-            const rowRef = rowsRef[rowIndex]
-            const columnRef = columnsRef[columnIndex]
-            const blockIndex = getBlockIndex(rowIndex, columnIndex)
-            const blockRef = blocksRef[blockIndex]
-            const availableNumbers = getAvailableNumbers(rowRef, columnRef, blockRef)
-            const selectedNumber = availableNumbers[0]
-            rowsRef[rowIndex] += selectedNumber
-            columnsRef[columnIndex] += selectedNumber
-            blocksRef[blockIndex] += selectedNumber
-            if (!selectedNumber) {
-              console.log("selectedNumber", availableNumbers)
-              console.log('blockIndex', blockIndex)
-              console.log('rowIndex', rowIndex)
-              console.log('columnIndex', columnIndex)
+  const potentialBoard = [[]]
+
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (board[i][j] === '.') {
+        const potentialNumbers = getAvailableNumbers(
+          rowsRef[i],
+          columnsRef[j],
+          blocksRef[getBlockIndex(i, j)]
+        )
+        for (let k = 0; k < potentialNumbers.length; k++) {
+          const cadidateNumber = potentialNumbers.pop()
+          for (let pos = j; pos < 9; pos++) {
+            board[i][pos] = String(cadidateNumber)
+
+            const nextCandidate = getAvailableNumbers(
+              rowsRef[i],
+              columnsRef[pos],
+              blocksRef[getBlockIndex(i, pos)]
+            )
+
+            if (!nextCandidate) {
+              break
             }
-            // console.log("number selcete", selectedNumber)
-            return selectedNumber
           }
-          return column
-        })
-    })
+        }
+      }
+    }
+  }
+
 
   return potentialBoard
 }
@@ -134,12 +139,28 @@ function solveSudoku1(board: string[][]): string[][] {
 const input = board1
 // solveSudoku1(input)
 
-console.log("solveSudoku1", solveSudoku1(input))
+console.log("solveSudoku1", printBoard(solveSudoku1(input)))
 //
 //Testings 
 const isEqualArray = (
   arr1: (number | string)[][], arr2: (number | string)[][]) => {
   return JSON.stringify(arr1) === JSON.stringify(arr2)
+}
+
+
+function printBoard(board: string[][]): void {
+  console.log("----------------------");
+  for (let i = 0; i < 9; i++) {
+    let row = "";
+    for (let j = 0; j < 9; j++) {
+      row += board[i][j] + " ";
+      if (j === 2 || j === 5) row += "| ";
+    }
+    console.log(row);
+    if (i === 2 || i === 5) {
+      console.log("------+-------+------");
+    }
+  }
 }
 
 // console.log('eq1', isEqualArray([[1, 2, 3], [3, 2, 2]], [[1, 2, 3], [3, 2, 2]]))
