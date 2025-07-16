@@ -1,55 +1,66 @@
-# LeetCode Problems to be Solved
+# Practice Problems by Category
 
-This directory contains categorized LeetCode problems organized by algorithmic patterns and data structures. Each category includes popular problems that are frequently asked in technical interviews.
+This directory contains LeetCode problems organized by algorithmic categories and difficulty levels. Each category has three subdirectories: `easy/`, `medium/`, and `hard/`.
 
-## Categories
+## 📁 Directory Structure
 
-### Data Structures
-- **[Arrays](./arrays/)** - Two pointers, sliding window, prefix sums
-- **[Strings](./strings/)** - Pattern matching, palindromes, anagrams
-- **[Linked Lists](./linked-lists/)** - Pointer manipulation, cycles, merging
-- **[Trees](./trees/)** - Binary trees, BST, traversals
-- **[Graphs](./graphs/)** - BFS, DFS, shortest paths, topological sort
-- **[Hash Table](./hash-table/)** - Frequency counting, lookups, design
-- **[Stack & Queue](./stack-queue/)** - LIFO/FIFO operations, monotonic stacks
-- **[Heap](./heap/)** - Priority queues, top K problems, merge K sorted
+```
+to_be_solved/
+├── arrays/                 # Array manipulation and traversal problems
+├── backtracking/          # Recursive backtracking algorithms
+├── binary-search/         # Binary search variations and applications
+├── bit-manipulation/      # Bitwise operations and bit tricks
+├── design/               # Data structure design problems
+├── dynamic-programming/   # DP optimization problems
+├── graphs/               # Graph traversal, shortest path, connectivity
+├── greedy/               # Greedy algorithm optimization
+├── hash-table/           # Hashing and lookup optimizations
+├── heap/                 # Priority queue and heap operations
+├── linked-lists/         # Linked list manipulation and traversal
+├── math/                 # Mathematical computations and number theory
+├── sliding-window/       # Window-based array/string problems
+├── sorting/              # Sorting algorithms and applications
+├── stack-queue/          # Stack and queue data structure problems
+├── strings/              # String manipulation and pattern matching
+├── trees/                # Binary tree and general tree algorithms
+└── two-pointers/         # Two-pointer technique problems
+```
 
-### Algorithms
-- **[Dynamic Programming](./dynamic-programming/)** - Optimal substructure, memoization
-- **[Backtracking](./backtracking/)** - Generate combinations, permutations, solutions
-- **[Binary Search](./binary-search/)** - Search in sorted arrays, binary search on answer
-- **[Two Pointers](./two-pointers/)** - Opposite direction, same direction, fast/slow
-- **[Sliding Window](./sliding-window/)** - Fixed/variable window, substring problems
-- **[Sorting](./sorting/)** - Custom sorting, merge sort, quick sort
-- **[Greedy](./greedy/)** - Local optimal choices, interval problems
-- **[Math](./math/)** - Number theory, digit manipulation, geometry
-- **[Bit Manipulation](./bit-manipulation/)** - XOR properties, bit operations, masks
-- **[Design](./design/)** - System design, data structure implementation
+## 🎯 Difficulty Levels
 
-## Difficulty Distribution
-- **Easy**: Fundamental concepts, basic implementations
-- **Medium**: Pattern recognition, optimized solutions
-- **Hard**: Complex algorithms, multiple concepts combined
+- **🟢 Easy**: Fundamental problems for learning concepts
+- **🟡 Medium**: Standard interview-level problems  
+- **🔴 Hard**: Advanced algorithmic challenges
 
-## Study Approach
-1. **Start with Easy**: Build foundation with basic problems
-2. **Identify Patterns**: Recognize common algorithmic patterns
-3. **Practice Regularly**: Solve 1-2 problems daily consistently
-4. **Review Solutions**: Understand different approaches and optimizations
-5. **Time Yourself**: Practice under interview conditions
+## 🚀 Usage
 
-## Interview Preparation
-These problems cover the most frequently asked questions in technical interviews at major tech companies. Focus on:
-- Understanding the pattern rather than memorizing solutions
-- Optimizing for both time and space complexity
-- Explaining your thought process clearly
-- Handling edge cases properly
+Run any problem directly with ts-node:
 
-## Problem Selection
-Problems are selected based on:
-- Frequency in interviews (2020-2025)
-- Fundamental algorithm/data structure concepts
-- Pattern recognition importance
-- Progression from basic to advanced concepts
+```bash
+# Easy problems
+npx ts-node arrays/easy/26-remove-duplicates-from-sorted-array.ts
 
-Each category folder contains a README with specific problems and their descriptions.
+# Medium problems  
+npx ts-node dynamic-programming/medium/322-coin-change.ts
+
+# Hard problems
+npx ts-node graphs/hard/127-word-ladder.ts
+```
+
+## 📚 Learning Path
+
+### Beginner Track
+1. **Arrays/Easy** → **Hash Table/Easy** → **Strings/Easy**
+2. **Two Pointers/Easy** → **Sliding Window/Easy**
+3. **Trees/Easy** → **Linked Lists/Easy**
+
+### Interview Preparation
+1. **Arrays** → **Dynamic Programming** → **Trees**
+2. **Graphs** → **Backtracking** → **Binary Search**
+3. **Design** → **Greedy** → **Advanced topics**
+
+### Advanced Track
+1. **Hard DP patterns** → **Complex Graph algorithms**
+2. **System Design** → **Optimization techniques**
+
+Each category README contains specific problem lists and learning resources.

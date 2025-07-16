@@ -1,4 +1,4 @@
-// LeetCode 215: Kth Largest Element in an Array
+// LeetCode 215: Kth Largest Element in an Array (Medium)
 // Given an integer array nums and an integer k, return the kth largest element in the array.
 
 function findKthLargest(nums: number[], k: number): number {

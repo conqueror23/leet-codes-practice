@@ -5,18 +5,26 @@ A comprehensive TypeScript-based repository for practicing LeetCode problems, or
 ## 📁 Repository Structure
 
 ```
-├── src/                    # Main LeetCode solutions
-├── interview_questions/    # Additional interview practice
-├── to_be_solved/          # Organized practice problems
+leet-codes-practice/
+├── src/                    # Main LeetCode solutions (individual problems)
+├── interview_questions/    # Additional interview practice problems
+├── to_be_solved/          # Organized practice problems by category
 │   ├── arrays/
-│   │   ├── easy/
-│   │   ├── medium/
-│   │   └── hard/
+│   │   ├── easy/          # Two Sum, Remove Duplicates, etc.
+│   │   ├── medium/        # 3Sum, Maximum Product Subarray, etc.
+│   │   └── hard/          # Median of Two Sorted Arrays, etc.
 │   ├── dynamic-programming/
+│   │   ├── easy/          # Fibonacci, Climbing Stairs, etc.
+│   │   ├── medium/        # Coin Change, House Robber, etc.
+│   │   └── hard/          # Edit Distance, etc.
 │   ├── graphs/
-│   ├── trees/
-│   └── ... (18 categories total)
+│   │   ├── easy/          # Find the Town Judge, etc.
+│   │   ├── medium/        # Number of Islands, Course Schedule, etc.
+│   │   └── hard/          # Word Ladder, etc.
+│   └── ... (18 categories total, each with easy/medium/hard)
 ├── CLAUDE.md              # Development guidelines
+├── package.json           # Dependencies and scripts
+├── tsconfig.json          # TypeScript configuration
 └── README.md              # This file
 ```
 
