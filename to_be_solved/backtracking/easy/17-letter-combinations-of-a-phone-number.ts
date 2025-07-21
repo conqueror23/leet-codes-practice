@@ -3,8 +3,9 @@
 
 function letterCombinations(digits: string): string[] {
     if (digits.length === 0) return [];
-    
+
     const mapping: { [key: string]: string } = {
+        '1': '-,.',
         '2': 'abc',
         '3': 'def',
         '4': 'ghi',
@@ -14,26 +15,33 @@ function letterCombinations(digits: string): string[] {
         '8': 'tuv',
         '9': 'wxyz'
     };
-    
+
     const result: string[] = [];
-    
+
     function backtrack(index: number, current: string) {
+        //escape terms
         if (index === digits.length) {
             result.push(current);
             return;
         }
-        
+
         const letters = mapping[digits[index]];
+        if (!letters) return backtrack(index + 1, current + '')
+
         for (const letter of letters) {
             backtrack(index + 1, current + letter);
         }
     }
-    
+
     backtrack(0, '');
     return result;
 }
 
 // Test cases
-console.log(letterCombinations("23")); // ["ad","ae","af","bd","be","bf","cd","ce","cf"]
-console.log(letterCombinations("")); // []
-console.log(letterCombinations("2")); // ["a","b","c"]
+// console.log(letterCombinations("23")); // ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+// console.log(letterCombinations("")); // []
+// console.log(letterCombinations("2")); // ["a","b","c"]
+
+console.log(letterCombinations("40233"));
+
+console.log(letterCombinations("421313"));
