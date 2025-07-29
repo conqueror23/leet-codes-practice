@@ -3,7 +3,7 @@
 
 class KthLargest {
     private k: number;
-    private heap: number[];
+    heap: number[];
 
     constructor(k: number, nums: number[]) {
         this.k = k;
@@ -27,6 +27,6 @@ class KthLargest {
 
 // Test case
 const kthLargest = new KthLargest(3, [4, 5, 8, 2]);
-console.log(kthLargest.add(3)); // 4
-console.log(kthLargest.add(5)); // 5
-console.log(kthLargest.add(10)); // 5
+console.log(kthLargest.add(3),kthLargest.heap); // 4
+console.log(kthLargest.add(5),kthLargest.heap); // 5
+console.log(kthLargest.add(10),kthLargest.heap); // 5

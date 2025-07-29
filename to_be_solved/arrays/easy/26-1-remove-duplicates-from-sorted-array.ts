@@ -84,15 +84,15 @@ function removeDuplicatesOptimized(nums: number[]): number {
 
 // Test cases
 console.log("Solution 1 - Two Pointers:");
-let test1 = [1,1,2];
+const test1 = [1,1,2];
 console.log(`Result: ${removeDuplicates(test1)}, Array: [${test1.slice(0, removeDuplicates([1,1,2]))}]`);
 
 console.log("\nSolution 2 - Allow K=2 duplicates:");
-let test2 = [1,1,1,2,2,3];
+const test2 = [1,1,1,2,2,3];
 console.log(`Result: ${removeDuplicatesK(test2, 2)}, Array: [${test2.slice(0, removeDuplicatesK([1,1,1,2,2,3], 2))}]`);
 
 console.log("\nSolution 3 - Using Set:");
-let test3 = [0,0,1,1,1,2,2,3,3,4];
+const test3 = [0,0,1,1,1,2,2,3,3,4];
 console.log(`Result: ${removeDuplicatesSet(test3)}, Array: [${test3.slice(0, removeDuplicatesSet([0,0,1,1,1,2,2,3,3,4]))}]`);
 
 // Time Complexity Analysis:

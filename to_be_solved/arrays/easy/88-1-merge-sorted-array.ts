@@ -108,22 +108,22 @@ function mergeBinarySearch(nums1: number[], m: number, nums2: number[], n: numbe
 
 // Test cases
 console.log("Solution 1 - Three Pointers from End:");
-let test1 = [1,2,3,0,0,0];
+const test1 = [1,2,3,0,0,0];
 merge([...test1], 3, [2,5,6], 3);
 console.log(test1); // [1,2,2,3,5,6]
 
 console.log("\nSolution 2 - From Start with Extra Space:");
-let test2 = [1,2,3,0,0,0];
+const test2 = [1,2,3,0,0,0];
 mergeFromStart(test2, 3, [2,5,6], 3);
 console.log(test2); // [1,2,2,3,5,6]
 
 console.log("\nSolution 3 - Built-in Sort:");
-let test3 = [1,2,3,0,0,0];
+const test3 = [1,2,3,0,0,0];
 mergeWithSort(test3, 3, [2,5,6], 3);
 console.log(test3); // [1,2,2,3,5,6]
 
 console.log("\nSolution 6 - Binary Search Insertion:");
-let test6 = [1,2,3,0,0,0];
+const test6 = [1,2,3,0,0,0];
 mergeBinarySearch(test6, 3, [2,5,6], 3);
 console.log(test6); // [1,2,2,3,5,6]
 
