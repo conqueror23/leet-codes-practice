@@ -1,141 +1,184 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Developer guide for Claude Code when working with this LeetCode practice repository.
 
 ## Project Overview
 
-This is a LeetCode practice repository containing TypeScript solutions to various algorithmic problems. The codebase is organized with individual problem solutions in the `src/` directory, each named with the problem number and description.
+**TypeScript-based LeetCode practice repository** with 57 problems across 18 algorithmic categories, organized by difficulty (easy/medium/hard).
 
-## Development Commands
+## Quick Development Commands
 
-### TypeScript Compilation
+### Essential Commands
 ```bash
+# Run any problem
+npx ts-node to_be_solved/[category]/[difficulty]/[problem].ts
+
+# Compile TypeScript
 npx tsc
-```
-Compiles TypeScript files from `src/` to `dist/` directory.
 
-### Running TypeScript Files
+# Lint code (ALWAYS run before commits)
+npx eslint src/ to_be_solved/
+```
+
+### Examples
 ```bash
-npx ts-node src/<filename>.ts
-```
-Execute TypeScript files directly without compilation.
+# Test a specific problem
+npx ts-node to_be_solved/arrays/easy/1-two-sum.ts
 
-### Linting
-```bash
-npx eslint src/
-```
-Run ESLint checks on the codebase using the configured TypeScript ESLint rules.
-
-## Code Architecture
-
-### File Structure
-- `src/` - Contains all LeetCode problem solutions
-- `interview_questions/` - Additional interview practice problems
-- `to_be_solved/` - Organized practice problems by category and difficulty level
-- Solutions are named using pattern: `{problem-number}-{problem-description}.ts`
-
-### Practice Problem Organization
-The `to_be_solved/` directory contains LeetCode problems organized by algorithmic categories, each with three difficulty levels:
-
-#### Categories Available:
-- `arrays/` - Array manipulation and traversal problems
-- `backtracking/` - Recursive backtracking algorithms
-- `binary-search/` - Binary search variations and applications
-- `bit-manipulation/` - Bitwise operations and bit tricks
-- `design/` - Data structure design problems
-- `dynamic-programming/` - DP optimization problems
-- `graphs/` - Graph traversal, shortest path, and connectivity
-- `greedy/` - Greedy algorithm optimization
-- `hash-table/` - Hashing and lookup optimizations
-- `heap/` - Priority queue and heap operations
-- `linked-lists/` - Linked list manipulation and traversal
-- `math/` - Mathematical computations and number theory
-- `sliding-window/` - Window-based array/string problems
-- `sorting/` - Sorting algorithms and applications
-- `stack-queue/` - Stack and queue data structure problems
-- `strings/` - String manipulation and pattern matching
-- `trees/` - Binary tree and general tree algorithms
-- `two-pointers/` - Two-pointer technique problems
-
-#### Difficulty Structure:
-Each category contains subdirectories for difficulty levels:
-- `easy/` - Fundamental problems for learning concepts
-- `medium/` - Standard interview-level problems
-- `hard/` - Advanced algorithmic challenges
-
-### TypeScript Configuration
-- Target: ES6
-- Module: CommonJS
-- Strict mode enabled
-- Output directory: `./dist`
-- Root directory: `./src`
-
-### Dependencies
-- **Runtime**: `ts-node` for direct TypeScript execution, `nodemon` for file watching
-- **Development**: ESLint with TypeScript support for code quality
-
-## Working with Solutions
-
-### Adding New Solutions
-When adding new LeetCode solutions:
-1. **Main Solutions**: Place in `src/` directory following pattern: `{number}-{kebab-case-description}.ts`
-2. **Practice Problems**: Use the organized structure in `to_be_solved/{category}/{difficulty}/`
-3. Use TypeScript with strict mode compliance
-4. Run linting before committing changes
-
-### Running Practice Problems
-Execute any practice problem directly:
-```bash
-# Run a specific practice problem
-npx ts-node to_be_solved/arrays/easy/26-remove-duplicates-from-sorted-array.ts
-
-# Run problems from any category/difficulty
-npx ts-node to_be_solved/dynamic-programming/medium/322-coin-change.ts
+# Run different categories
+npx ts-node to_be_solved/trees/medium/102-binary-tree-level-order-traversal.ts
+npx ts-node to_be_solved/dynamic-programming/hard/72-edit-distance.ts
 ```
 
-### Problem File Structure
-Each problem file includes:
-- Problem description with LeetCode number and difficulty
-- Clean TypeScript implementation with proper typing
-- Multiple test cases demonstrating usage
-- Alternative solutions where applicable
+## Repository Structure
 
-### Linting Practice Problems
-Lint the entire practice problem collection:
-```bash
-npx eslint to_be_solved/
 ```
+├── src/                    # Individual LeetCode solutions
+├── to_be_solved/          # Organized practice problems (57 total)
+│   ├── arrays/            # 6 problems (easy: 2, medium: 2, hard: 2)
+│   ├── strings/           # 3 problems (easy: 1, medium: 1, hard: 1)
+│   ├── trees/             # 3 problems (easy: 1, medium: 1, hard: 1)
+│   └── ... (15 more)      # Each category has 3 problems minimum
+├── interview_questions/   # Additional practice problems
+├── package.json          # Dependencies and scripts
+├── tsconfig.json         # TypeScript config (ES6, CommonJS, strict)
+└── .eslintrc.js          # ESLint TypeScript rules
+```
+
+## Complete Category List (18 categories)
+
+**Data Structures:** arrays, strings, linked-lists, trees, graphs, stack-queue, heap, hash-table
+
+**Algorithms:** dynamic-programming, backtracking, binary-search, sorting, greedy, two-pointers, sliding-window
+
+**Advanced:** bit-manipulation, math, design
+
+## Adding New Problems
+
+### File Naming Convention
+`{leetcode-number}-{kebab-case-description}.ts`
+
+Examples:
+- `1-two-sum.ts`
+- `15-3sum.ts` 
+- `125-valid-palindrome.ts`
+
+### Problem File Template
+```typescript
+/**
+ * [Number]. [Title]
+ * Difficulty: [Easy/Medium/Hard]
+ * 
+ * [Problem description]
+ * 
+ * Example 1:
+ * Input: [input]
+ * Output: [output]
+ * Explanation: [explanation]
+ */
+
+function problemName(param: type): returnType {
+    // Implementation
+}
+
+// Test cases
+console.log(problemName(testInput)); // Expected: output
+```
+
+### Directory Placement
+- **Individual solutions**: Place in `src/`
+- **Practice problems**: Place in `to_be_solved/[category]/[difficulty]/`
+- **Interview prep**: Place in `interview_questions/`
+
+## TypeScript Configuration
+
+### Current Settings
+- **Target**: ES6
+- **Module**: CommonJS
+- **Strict mode**: Enabled
+- **Output**: `./dist`
+- **Root**: `./src`
+
+### Code Style Requirements
+- Use TypeScript strict mode
+- Proper type annotations
+- No implicit any
+- ESLint compliance required
 
 ## Testing
 
-Currently no test framework is configured. Solutions can be tested by running them directly with `ts-node`.
-
-### Practice Problem Testing
-Each practice problem file contains built-in test cases that execute when the file is run:
+### Running Solutions
+Each problem file includes built-in test cases that execute when run:
 ```bash
-# Test cases will run automatically when executing any problem file
 npx ts-node to_be_solved/arrays/easy/1-two-sum.ts
+# Output: Test results printed to console
 ```
 
-## Study Guide
+### No Test Framework
+- No Jest/Mocha setup currently
+- Solutions tested via console.log statements
+- Test cases included in each problem file
 
-### Recommended Learning Path
-1. **Start with Easy problems** in fundamental categories:
-   - Arrays (basic manipulation, two pointers)
-   - Strings (basic operations, anagrams)
-   - Hash Table (lookups, frequency counting)
+## Code Quality Standards
 
-2. **Progress to Medium problems** after mastering basics:
-   - Dynamic Programming (memoization, tabulation)
-   - Trees (traversals, manipulation)
-   - Graphs (BFS, DFS, basic algorithms)
+### Before Committing
+1. **ALWAYS run linting**: `npx eslint to_be_solved/`
+2. **Test execution**: Verify problem runs without errors
+3. **Type checking**: Ensure TypeScript compiles successfully
 
-3. **Tackle Hard problems** for advanced concepts:
-   - Complex DP (multi-dimensional, optimization)
-   - Advanced Graph algorithms (shortest path, MST)
-   - System Design problems
+### ESLint Rules
+- TypeScript ESLint configuration active
+- Strict typing enforced
+- Code style consistency required
 
-### Category Focus Areas
-- **Interview Preparation**: Focus on Arrays, Strings, Trees, and Dynamic Programming
-- **Algorithm Mastery**: Emphasize Graphs, Backtracking, and Binary Search
-- **Optimization Skills**: Study Greedy, Bit Manipulation, and Advanced DP
+## Development Workflow
+
+### Adding Problems
+1. Choose appropriate category and difficulty
+2. Create file with proper naming convention
+3. Include problem description and examples
+4. Implement solution with proper TypeScript types
+5. Add comprehensive test cases
+6. Run ESLint and fix any issues
+7. Test execution to verify correctness
+
+### Modifying Existing Problems
+1. Read existing file to understand current implementation
+2. Make changes while preserving code style
+3. Run linting and testing
+4. Verify changes don't break execution
+
+## Category Guidelines
+
+### Problem Distribution
+- **Minimum 3 problems** per category (easy/medium/hard)
+- **Arrays category** has 6 problems (most comprehensive)
+- **All other categories** have exactly 3 problems
+
+### Difficulty Progression
+- **Easy**: Single concept, straightforward implementation
+- **Medium**: Multiple concepts, optimization required
+- **Hard**: Complex algorithms, edge case handling
+
+## Common Commands Reference
+
+```bash
+# Development
+npx ts-node [file-path]      # Run specific TypeScript file
+npx tsc                      # Compile all TypeScript
+npx eslint [directory]       # Lint code
+
+# Examples
+npx ts-node to_be_solved/arrays/easy/26-remove-duplicates-from-sorted-array.ts
+npx eslint src/
+npx eslint to_be_solved/
+```
+
+## Important Notes
+
+- **Always run ESLint** before making commits
+- **Test problem execution** after adding/modifying files
+- **Follow naming conventions** exactly as specified
+- **Include comprehensive test cases** in every problem file
+- **Use TypeScript strict mode** for all implementations
+- **Current status**: 100% complete coverage across all categories and difficulties

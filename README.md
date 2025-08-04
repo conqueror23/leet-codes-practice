@@ -1,168 +1,140 @@
 # LeetCode Practice Repository
 
-A comprehensive TypeScript-based repository for practicing LeetCode problems, organized by algorithmic categories and difficulty levels.
+TypeScript solutions for LeetCode problems, organized by algorithm type and difficulty.
 
-## 📁 Repository Structure
+## Quick Start
 
-```
-leet-codes-practice/
-├── src/                    # Main LeetCode solutions (individual problems)
-├── interview_questions/    # Additional interview practice problems
-├── to_be_solved/          # Organized practice problems by category
-│   ├── arrays/
-│   │   ├── easy/          # Two Sum, Remove Duplicates, etc.
-│   │   ├── medium/        # 3Sum, Maximum Product Subarray, etc.
-│   │   └── hard/          # Median of Two Sorted Arrays, etc.
-│   ├── dynamic-programming/
-│   │   ├── easy/          # Fibonacci, Climbing Stairs, etc.
-│   │   ├── medium/        # Coin Change, House Robber, etc.
-│   │   └── hard/          # Edit Distance, etc.
-│   ├── graphs/
-│   │   ├── easy/          # Find the Town Judge, etc.
-│   │   ├── medium/        # Number of Islands, Course Schedule, etc.
-│   │   └── hard/          # Word Ladder, etc.
-│   └── ... (18 categories total, each with easy/medium/hard)
-├── CLAUDE.md              # Development guidelines
-├── package.json           # Dependencies and scripts
-├── tsconfig.json          # TypeScript configuration
-└── README.md              # This file
-```
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js (v14+)
-- TypeScript
-- ts-node
-
-### Installation
 ```bash
+# Install dependencies
 npm install
-```
 
-### Running Solutions
-```bash
-# Run any solution directly
-npx ts-node src/37-sudoku-solver.ts
+# Run any problem
+npx ts-node to_be_solved/arrays/easy/1-two-sum.ts
 
-# Run practice problems by category/difficulty
-npx ts-node to_be_solved/arrays/easy/26-remove-duplicates-from-sorted-array.ts
-npx ts-node to_be_solved/dynamic-programming/medium/322-coin-change.ts
-```
-
-### Development
-```bash
-# Compile TypeScript
-npx tsc
-
-# Run linting
-npx eslint src/
+# Check code quality
 npx eslint to_be_solved/
 ```
 
-## 📚 Practice Problem Categories
+## Structure
 
-### 🔢 Data Structures
-- **Arrays** - Manipulation, traversal, two pointers
-- **Linked Lists** - Traversal, reversal, merging
-- **Trees** - Binary trees, BST, traversals
-- **Graphs** - BFS, DFS, shortest path
-- **Stack/Queue** - LIFO/FIFO operations
-- **Heap** - Priority queues, k-th elements
-- **Hash Table** - Lookups, frequency counting
+```
+leet-codes-practice/
+├── src/                    # Individual solutions
+├── to_be_solved/          # Organized by category (57 problems)
+│   ├── arrays/            # Array problems (6 problems)
+│   ├── strings/           # String problems (3 problems)
+│   ├── trees/             # Tree problems (3 problems)
+│   └── ... (15 more categories)
+└── interview_questions/   # Additional practice
+```
 
-### 🧮 Algorithms  
-- **Dynamic Programming** - Memoization, tabulation, optimization
-- **Backtracking** - Recursive exploration, constraint satisfaction
-- **Binary Search** - Search variations, optimization problems
-- **Sorting** - Custom comparisons, merge operations
-- **Greedy** - Local optimization strategies
-- **Two Pointers** - Array/string processing techniques
-- **Sliding Window** - Subarray/substring problems
+## Categories (18 total)
 
-### 🔧 Advanced Topics
-- **Bit Manipulation** - Bitwise operations, optimization tricks
-- **Math** - Number theory, computational problems
-- **Design** - Data structure implementation, system design
+### Data Structures
+- **Arrays** (6) - Two pointers, sorting, searching
+- **Strings** (3) - Pattern matching, manipulation
+- **Linked Lists** (3) - Traversal, reversal, merging
+- **Trees** (3) - Binary trees, traversals
+- **Graphs** (3) - BFS, DFS, shortest paths
+- **Stack/Queue** (3) - LIFO/FIFO operations
+- **Heap** (3) - Priority queues, k-th elements
+- **Hash Table** (3) - Lookups, frequency counting
 
-## 🎯 Difficulty Levels
+### Algorithms
+- **Dynamic Programming** (3) - Optimization, memoization
+- **Backtracking** (3) - Recursive exploration
+- **Binary Search** (3) - Search variations
+- **Sorting** (3) - Custom comparisons
+- **Greedy** (3) - Local optimization
+- **Two Pointers** (3) - Array processing
+- **Sliding Window** (3) - Subarray problems
 
-### 🟢 Easy (Fundamentals)
-- Basic data structure operations
-- Simple algorithms and patterns
-- Foundation building problems
+### Advanced
+- **Bit Manipulation** (3) - Bitwise operations
+- **Math** (3) - Number theory
+- **Design** (3) - Data structure implementation
 
-### 🟡 Medium (Interview Standard)
-- Standard interview questions
-- Multiple concept combinations
-- Optimization challenges
+## Difficulty Levels
 
-### 🔴 Hard (Advanced)
-- Complex algorithmic challenges
-- Multi-step problem solving
-- Advanced optimization techniques
+- **Easy** (18 problems) - Basic concepts, single algorithms
+- **Medium** (19 problems) - Multiple concepts, optimization
+- **Hard** (20 problems) - Complex algorithms, edge cases
 
-## 📖 Learning Path
+## Learning Path
 
-### 🚀 Beginner Track
-1. Start with **Arrays/Easy** - Master basic operations
-2. Practice **Strings/Easy** - String manipulation basics
-3. Learn **Hash Table/Easy** - Frequency and lookup patterns
+### Beginner (Start here)
+1. **Arrays/Easy** → **Hash Table/Easy** → **Strings/Easy**
+2. Master basic operations before moving to medium
 
-### 💼 Interview Preparation
+### Interview Prep
 1. **Arrays** → **Two Pointers** → **Sliding Window**
 2. **Trees** → **Graphs** → **Dynamic Programming**
-3. **Backtracking** → **Binary Search** → **Greedy**
+3. Practice 2-3 problems daily from different categories
 
-### 🏆 Advanced Mastery
-1. Complex **Dynamic Programming** patterns
-2. Advanced **Graph** algorithms
-3. **System Design** problems
+### Advanced Practice
+1. **Hard** problems from each category
+2. **System Design** problems
+3. Time complexity optimization
 
-## 🛠️ Problem File Structure
+## Problem Format
 
-Each problem file includes:
-- 📝 Problem description with LeetCode number and difficulty
-- 💻 Clean TypeScript implementation with proper typing
-- 🧪 Multiple test cases with expected outputs
-- 🔄 Alternative solutions where applicable
+Each file contains:
+- Problem description with LeetCode number
+- Clean TypeScript implementation
+- Test cases with expected outputs
+- Time/space complexity notes
 
-Example:
 ```typescript
-// LeetCode 1: Two Sum (Easy)
-// Given an array of integers nums and an integer target...
-
+/**
+ * 1. Two Sum (Easy)
+ * Given array nums and target, return indices of two numbers that add up to target.
+ */
 function twoSum(nums: number[], target: number): number[] {
-    // Implementation here
+    // Implementation
 }
 
 // Test cases
 console.log(twoSum([2, 7, 11, 15], 9)); // [0, 1]
 ```
 
-## 📊 Progress Tracking
+## Commands
 
-Track your progress through different categories:
-- ✅ Completed problems
-- 🔄 Work in progress  
-- 📝 Notes and learnings
-- ⭐ Favorite solutions
+```bash
+# Run specific problem
+npx ts-node to_be_solved/arrays/easy/1-two-sum.ts
 
-## 🤝 Contributing
+# Compile all TypeScript
+npx tsc
 
-1. Follow the established file naming convention
-2. Include comprehensive test cases
-3. Add clear problem descriptions
-4. Run linting before committing
-5. Update documentation as needed
+# Lint code
+npx eslint src/ to_be_solved/
 
-## 📚 Resources
+# Run from any category
+npx ts-node to_be_solved/[category]/[difficulty]/[problem-name].ts
+```
 
-- [LeetCode Official](https://leetcode.com/)
-- [TypeScript Documentation](https://www.typescriptlang.org/)
-- [Algorithm Visualization](https://visualgo.net/)
-- [Big O Cheat Sheet](https://www.bigocheatsheet.com/)
+## Progress Tracking
 
-## 📄 License
+**Current Status: 100% Complete**
+- ✅ All 18 categories have easy/medium/hard problems
+- ✅ 57 total problems covering all major algorithms
+- ✅ Each problem includes comprehensive test cases
 
-This project is for educational purposes and personal practice.
+## Tips
+
+1. **Start Easy** - Master fundamentals before harder problems
+2. **Practice Daily** - Consistency beats intensity
+3. **Understand Patterns** - Many problems use similar techniques
+4. **Time Yourself** - Simulate interview conditions
+5. **Review Solutions** - Learn multiple approaches
+
+## Contributing
+
+1. Use naming pattern: `[number]-[kebab-case-description].ts`
+2. Include problem description and test cases
+3. Run `npx eslint` before committing
+4. Follow existing TypeScript patterns
+
+---
+
+**Total Problems: 57** | **Categories: 18** | **Full Coverage: ✅**

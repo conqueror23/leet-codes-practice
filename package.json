@@ -1,12 +1,16 @@
 {
   "name": "leet-codes-practice",
   "version": "1.0.0",
-  "description": "Project to play with leet-code practice",
+  "description": "TypeScript LeetCode practice repository with 57 problems across 18 algorithmic categories",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "lint": "eslint src/ to_be_solved/",
+    "lint:fix": "eslint src/ to_be_solved/ --fix",
+    "run": "ts-node",
+    "test": "echo \"Run problems directly with: npx ts-node to_be_solved/[category]/[difficulty]/[problem].ts\""
   },
-  "keywords": [],
+  "keywords": ["leetcode", "algorithms", "typescript", "data-structures", "coding-practice", "interview-prep"],
   "author": "",
   "license": "ISC",
   "dependencies": {
