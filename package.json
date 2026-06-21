@@ -8,7 +8,8 @@
     "lint": "eslint src/ to_be_solved/",
     "lint:fix": "eslint src/ to_be_solved/ --fix",
     "run": "ts-node",
-    "test": "echo \"Run problems directly with: npx ts-node to_be_solved/[category]/[difficulty]/[problem].ts\""
+    "test": "echo \"Run problems directly with: npx ts-node to_be_solved/[category]/[difficulty]/[problem].ts\"",
+    "watch": "nodemon --exec ts-node"
   },
   "keywords": ["leetcode", "algorithms", "typescript", "data-structures", "coding-practice", "interview-prep"],
   "author": "",
