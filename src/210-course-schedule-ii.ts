@@ -99,12 +99,87 @@ function findAllOrders(numCourses: number, prerequisites: number[][]): number[][
   return result;
 }
 
+function findAllOrdersIterative(
+  numCourses: number,
+  prerequisites: number[][]
+): number[][] {
+
+  const graph: number[][] = Array.from({ length: numCourses }, () => []);
+  const initialIndegree: number[] = Array(numCourses).fill(0);
+
+  // Build graph: prerequisite -> course
+  for (const [course, prerequisite] of prerequisites) {
+    graph[prerequisite].push(course);
+    initialIndegree[course]++;
+  }
+
+  type State = {
+    path: number[];
+    indegree: number[];
+    used: boolean[];
+  };
+
+  const result: number[][] = [];
+
+  const stack: State[] = [
+    {
+      path: [],
+      indegree: initialIndegree,
+      used: Array(numCourses).fill(false),
+    },
+  ];
+
+  while (stack.length > 0) {
+    const state = stack.pop()!;
+    const { path, indegree, used } = state;
+
+    if (path.length === numCourses) {
+      result.push(path);
+      continue;
+    }
+
+    // Find all currently available courses
+    const candidates: number[] = [];
+
+    for (let course = 0; course < numCourses; course++) {
+      if (!used[course] && indegree[course] === 0) {
+        candidates.push(course);
+      }
+    }
+
+    // Try every candidate as the next course
+    for (const course of candidates) {
+      const newPath = [...path, course];
+      const newUsed = [...used];
+      const newIndegree = [...indegree];
+
+      newUsed[course] = true;
+
+      for (const next of graph[course]) {
+        newIndegree[next]--;
+      }
+
+      stack.push({
+        path: newPath,
+        indegree: newIndegree,
+        used: newUsed,
+      });
+    }
+  }
+
+  return result;
+}
+
 const numCourses = 4
 const prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]
+
 
 // const order = findOrder(numCourses, prerequisites)
 
 
-const order = findAllOrders(numCourses, prerequisites)
+
+//const order = findAllOrders(numCourses, prerequisites)
+
+const order = findAllOrdersIterative(numCourses, prerequisites)
 
 console.log(order)
