@@ -24,7 +24,8 @@
   "dependencies": {
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.7.0",
