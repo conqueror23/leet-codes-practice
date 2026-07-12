@@ -47,9 +47,7 @@ function cloneGraph(node: CNode | null): CNode | null {
     return copy;
   }
   return dfs(node)
-
 };
-
 
 function cloneGraphBfs(node: CNode | null): CNode | null {
   if (node === null) return null
@@ -68,10 +66,8 @@ function cloneGraphBfs(node: CNode | null): CNode | null {
       }
       currentClone.neighbors.push(cloned.get(neighbor)!)
     }
-
   }
   return cloned.get(node)!
-
 }
 
 const adList = [
@@ -107,7 +103,8 @@ const buildGraph = (adList: number[][]): CNode | null => {
 }
 
 const graph = buildGraph(adList)!
-const clonedGraph = cloneGraph(graph)!
-
-console.log(clonedGraph)
+// const clonedGraph = cloneGraph(graph)!
+const cloneGraphBfsF = cloneGraphBfs(graph)!
+console.log(cloneGraphBfsF)
+// console.log(clonedGraph)
 
