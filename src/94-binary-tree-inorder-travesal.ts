@@ -29,3 +29,31 @@ function inorderTraversal(root: TreeNode | null): number[] {
 
   return result;
 }
+
+// ---- tests ----
+{
+  const check = (name: string, actual: unknown, expected: unknown): void => {
+    console.log(JSON.stringify(actual) === JSON.stringify(expected)
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
+  }
+
+  // case1: [1,null,2,3] — right child with left grandchild
+  const tree1 = new TreeNode(1, null, new TreeNode(2, new TreeNode(3)))
+  check("case1 [1,null,2,3]", inorderTraversal(tree1), [1, 3, 2])
+
+  // case2: empty tree
+  check("case2 empty", inorderTraversal(null), [])
+
+  // case3: single node
+  check("case3 [1]", inorderTraversal(new TreeNode(1)), [1])
+
+  // case4: full tree [1,2,3,4,5]
+  const tree4 = new TreeNode(1,
+    new TreeNode(2, new TreeNode(4), new TreeNode(5)),
+    new TreeNode(3))
+  check("case4 [1,2,3,4,5]", inorderTraversal(tree4), [4, 2, 5, 1, 3])
+}
+
+// make this file a module so its declarations stay file-scoped
+export {}

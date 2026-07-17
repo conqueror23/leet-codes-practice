@@ -168,12 +168,30 @@ function pacificAtlantic(heights: number[][]): number[][] {
 
   return result;
 }
-const heights = [
-  [1, 2, 2, 3, 5], [3, 2, 3, 4, 4], [2, 4, 5, 3, 1], [6, 7, 1, 4, 5], [5, 1, 1, 2, 4]
-]
+// ---- tests ----
+{
+  // cells can come back in any order, so normalize before comparing
+  const normalize = (cells: number[][]): number[][] =>
+    [...cells].sort((a, b) => (a[0] - b[0]) || (a[1] - b[1]))
 
-const overlapCells = pacificAtlantic(heights)
+  const check = (name: string, actual: number[][], expected: number[][]): void => {
+    const a = JSON.stringify(normalize(actual))
+    const e = JSON.stringify(normalize(expected))
+    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
+  }
 
+  check("case1 classic 5x5",
+    pacificAtlantic([
+      [1, 2, 2, 3, 5], [3, 2, 3, 4, 4], [2, 4, 5, 3, 1], [6, 7, 1, 4, 5], [5, 1, 1, 2, 4]
+    ]),
+    [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]])
 
+  check("case2 single cell", pacificAtlantic([[1]]), [[0, 0]])
 
-console.log(overlapCells)
+  check("case3 2x2 all reach both oceans",
+    pacificAtlantic([[2, 1], [1, 2]]),
+    [[0, 0], [0, 1], [1, 0], [1, 1]])
+}
+
+// make this file a module so its declarations stay file-scoped
+export {}

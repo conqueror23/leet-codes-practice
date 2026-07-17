@@ -23,12 +23,20 @@ function addBinary(a: string, b: string): string {
 
   return carry ? "1" + result : result;};
 
-// console.log('expected 100 -',addBinary('1','11'))
-// console.log('expected 1101 -',addBinary('1010','11'))
+// ---- tests ----
+{
+  const check = (name: string, actual: string, expected: string): void => {
+    console.log(actual === expected
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected "${expected}", got "${actual}"`)
+  }
 
-// console.log('expected 110110 -',addBinary('100','110010'))
-// console.log('expected 0 -',addBinary('0','0'))
+  check("case1 11 + 1", addBinary("11", "1"), "100")
+  check("case2 1010 + 1011", addBinary("1010", "1011"), "10101")
+  check("case3 0 + 0", addBinary("0", "0"), "0")
+  check("case4 1010 + 11", addBinary("1010", "11"), "1101")
+  check("case5 100 + 110010", addBinary("100", "110010"), "110110")
+}
 
-console.log('expected 0 -',addBinary('1010','1011'))
-
-// console.log('expected 0 -',addBinary('100','110010'))
+// make this file a module so its declarations stay file-scoped
+export {}

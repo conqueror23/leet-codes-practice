@@ -13,4 +13,19 @@ function getRow(rowIndex: number): number[] {
 
 
 
-console.log("getRow", getRow(3))
+// ---- tests ----
+{
+  const check = (name: string, actual: unknown, expected: unknown): void => {
+    console.log(JSON.stringify(actual) === JSON.stringify(expected)
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
+  }
+
+  check("case1 rowIndex=0", getRow(0), [1])
+  check("case2 rowIndex=1", getRow(1), [1, 1])
+  check("case3 rowIndex=3", getRow(3), [1, 3, 3, 1])
+  check("case4 rowIndex=4", getRow(4), [1, 4, 6, 4, 1])
+}
+
+// make this file a module so its declarations stay file-scoped
+export {}

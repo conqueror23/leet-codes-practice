@@ -11,9 +11,19 @@ function maxProfit(prices: number[]): number {
 };
 
 
-const numbers = [7, 1, 5, 3, 6, 4]
+// ---- tests ----
+{
+  const check = (name: string, actual: unknown, expected: unknown): void => {
+    console.log(actual === expected
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
+  }
 
-const profit = maxProfit(numbers)
-// 5
+  check("case1 [7,1,5,3,6,4]", maxProfit([7, 1, 5, 3, 6, 4]), 5)
+  check("case2 [7,6,4,3,1] no profit", maxProfit([7, 6, 4, 3, 1]), 0)
+  check("case3 [2,4,1]", maxProfit([2, 4, 1]), 2)
+  check("case4 [1] single day", maxProfit([1]), 0)
+}
 
-console.log(profit)
+// make this file a module so its declarations stay file-scoped
+export {}

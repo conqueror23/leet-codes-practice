@@ -70,21 +70,13 @@ function cloneGraphBfs(node: CNode | null): CNode | null {
   return cloned.get(node)!
 }
 
-const adList = [
-  [2, 4],
-  [1, 3],
-  [2, 4],
-  [1, 3]
-]
-
 /**
+ * adjacency list example:
  * 1 : 2, 4
  * 2 : 1, 3
  * 3 : 2, 4
  * 4 : 1, 3
  */
-
-
 const buildGraph = (adList: number[][]): CNode | null => {
   if (adList.length === 0) return null
   const nodes: CNode[] = []
@@ -102,9 +94,60 @@ const buildGraph = (adList: number[][]): CNode | null => {
   return nodes[0]
 }
 
-const graph = buildGraph(adList)!
-// const clonedGraph = cloneGraph(graph)!
-const cloneGraphBfsF = cloneGraphBfs(graph)!
-console.log(cloneGraphBfsF)
-// console.log(clonedGraph)
+// serialize a graph back to an adjacency list so clones can be compared
+const toAdjList = (node: CNode | null): number[][] => {
+  if (node === null) return []
+  const seen = new Map<number, CNode>()
+  const queue: CNode[] = [node]
+  seen.set(node.val, node)
+  let head = 0
+  while (head < queue.length) {
+    const current = queue[head++]
+    for (const neighbor of current.neighbors) {
+      if (!seen.has(neighbor.val)) {
+        seen.set(neighbor.val, neighbor)
+        queue.push(neighbor)
+      }
+    }
+  }
+  const result: number[][] = []
+  for (let val = 1; val <= seen.size; val++) {
+    result.push(seen.get(val)!.neighbors.map(n => n.val))
+  }
+  return result
+}
 
+// ---- tests ----
+{
+  const eq = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b)
+  const check = (name: string, actual: unknown, expected: unknown): void => {
+    console.log(eq(actual, expected)
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
+  }
+
+  const cases: number[][][] = [
+    [[2, 4], [1, 3], [2, 4], [1, 3]], // 4-node cycle
+    [[]],                             // single node, no neighbors
+    [[2], [1]],                       // two connected nodes
+  ]
+
+  for (const [index, adjacency] of cases.entries()) {
+    const original = buildGraph(adjacency)!
+
+    const dfsClone = cloneGraph(original)
+    check(`case${index + 1} DFS clone structure`, toAdjList(dfsClone), adjacency)
+    check(`case${index + 1} DFS clone is a new object`, dfsClone !== original, true)
+
+    const bfsClone = cloneGraphBfs(original)
+    check(`case${index + 1} BFS clone structure`, toAdjList(bfsClone), adjacency)
+    check(`case${index + 1} BFS clone is a new object`, bfsClone !== original, true)
+  }
+
+  check("null input DFS", cloneGraph(null), null)
+  check("null input BFS", cloneGraphBfs(null), null)
+}
+
+
+// make this file a module so its declarations stay file-scoped
+export {}

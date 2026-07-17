@@ -30,25 +30,28 @@ function threeSum(nums: number[]): number[][] {
 
 
 
-//should ignore duplicate result
+// ---- tests ----
+{
+  // triplets can come back in any order, so normalize before comparing
+  const normalize = (triplets: number[][]): number[][] =>
+    triplets
+      .map(t => [...t].sort((a, b) => a - b))
+      .sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
 
-// const testCase1 = [1, 2, 3, 0, -2, -3, -1]
-// const testCase2 = [0, 1, 1]
-// const testCase3 = [0, 0, 0]
-const testCase4 = [-1, 0, 1, 2, -1, -4]
-// const testCase5 = [3, 0, -2, -1, 1, 2]
+  const check = (name: string, actual: number[][], expected: number[][]): void => {
+    const a = JSON.stringify(normalize(actual))
+    const e = JSON.stringify(normalize(expected))
+    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
+  }
 
-// [-2,-1,0,1,2,3]
+  check("case1 [-1,0,1,2,-1,-4]", threeSum([-1, 0, 1, 2, -1, -4]), [[-1, -1, 2], [-1, 0, 1]])
+  check("case2 [0,1,1] no triplet", threeSum([0, 1, 1]), [])
+  check("case3 [0,0,0]", threeSum([0, 0, 0]), [[0, 0, 0]])
+  check("case4 [1,2,3,0,-2,-3,-1]", threeSum([1, 2, 3, 0, -2, -3, -1]),
+    [[-3, 0, 3], [-3, 1, 2], [-2, -1, 3], [-2, 0, 2], [-1, 0, 1]])
+  check("case5 [3,0,-2,-1,1,2]", threeSum([3, 0, -2, -1, 1, 2]),
+    [[-2, -1, 3], [-2, 0, 2], [-1, 0, 1]])
+}
 
-
-// const res1 = threeSum(testCase1)
-// console.log("testCase1",res1)
-//
-// const res3 = threeSum(testCase3)
-// console.log("testCase3",res3)
-
-const res4 = threeSum(testCase4)
-console.log("testCase4", res4)
-
-// const res5 = threeSum(testCase5)
-// console.log("testCase5",res5)
+// make this file a module so its declarations stay file-scoped
+export {}

@@ -93,6 +93,8 @@ const getAvailableNumbers = (
   return potentialNumbers
 }
 
+// WIP attempt, kept for reference — see solveSudoku below for the working solver
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function solveSudoku1(board: string[][]): string[][] {
   // const recordsSet = new Map<number, Set<number | null>>()
   const { rowsRef, columnsRef, blocksRef } = getLatestRef(board)
@@ -136,12 +138,43 @@ function solveSudoku1(board: string[][]): string[][] {
   return potentialBoard
 }
 
-const input = board1
-// solveSudoku1(input)
+// working backtracking solver (solveSudoku1 above is a WIP attempt)
+function solveSudoku(board: string[][]): string[][] {
+  const isValidPlacement = (r: number, c: number, ch: string): boolean => {
+    for (let i = 0; i < 9; i++) {
+      if (board[r][i] === ch) return false
+      if (board[i][c] === ch) return false
+      const br = 3 * Math.floor(r / 3) + Math.floor(i / 3)
+      const bc = 3 * Math.floor(c / 3) + (i % 3)
+      if (board[br][bc] === ch) return false
+    }
+    return true
+  }
 
-console.log("solveSudoku1", printBoard(solveSudoku1(input)))
-//
-//Testings 
+  const solve = (): boolean => {
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        if (board[r][c] !== '.') continue
+
+        for (let digit = 1; digit <= 9; digit++) {
+          const ch = String(digit)
+          if (isValidPlacement(r, c, ch)) {
+            board[r][c] = ch
+            if (solve()) return true
+            board[r][c] = '.'
+          }
+        }
+        return false
+      }
+    }
+    return true
+  }
+
+  solve()
+  return board
+}
+
+//Testings
 const isEqualArray = (
   arr1: (number | string)[][], arr2: (number | string)[][]) => {
   return JSON.stringify(arr1) === JSON.stringify(arr2)
@@ -163,17 +196,46 @@ function printBoard(board: string[][]): void {
   }
 }
 
-// console.log('eq1', isEqualArray([[1, 2, 3], [3, 2, 2]], [[1, 2, 3], [3, 2, 2]]))
-// console.log('eq2', isEqualArray([[1, 2, 5], [3, 2, 2]], [[1, 2, 3], [3, 2, 2]]))
-//
-/** [ '5', '3', '1', '2', '7', '2', '1', '1', '2' ],
-    [ '6', '2', '2', '1', '9', '5', '3', '2', '2' ],
-    [ '1', '9', '8', '2', '3', '2', '1', '6', '2' ],
-    [ '8', '1', '1', '5', '6', '1', '4', '2', '3' ],
-    [ '4', '2', '2', '8', '5', '3', '5', '2', '1' ],
-    [ '7', '1', '1', '3', '2', '1', '4', '4', '6' ],
-    [ '1', '6', '1', '3', '3', '7', '2', '8', '4' ],
-    [ '2', '2', '2', '4', '1', '9', '3', '3', '5' ],
-    [ '1', '1', '1', '2', '8', '2', '1', '7', '9' ]
-]
-**/
+// ---- tests ----
+{
+  const check = (name: string, pass: boolean, detail = ""): void => {
+    console.log(pass ? `PASS ${name}` : `FAIL ${name}${detail ? `: ${detail}` : ""}`)
+  }
+
+  const deepCopy = (board: string[][]): string[][] => board.map(row => [...row])
+
+  const expectedSolution1 = [
+    ["5", "3", "4", "6", "7", "8", "9", "1", "2"],
+    ["6", "7", "2", "1", "9", "5", "3", "4", "8"],
+    ["1", "9", "8", "3", "4", "2", "5", "6", "7"],
+    ["8", "5", "9", "7", "6", "1", "4", "2", "3"],
+    ["4", "2", "6", "8", "5", "3", "7", "9", "1"],
+    ["7", "1", "3", "9", "2", "4", "8", "5", "6"],
+    ["9", "6", "1", "5", "3", "7", "2", "8", "4"],
+    ["2", "8", "7", "4", "1", "9", "6", "3", "5"],
+    ["3", "4", "5", "2", "8", "6", "1", "7", "9"],
+  ]
+
+  // case1: classic LeetCode board matches the known solution
+  const solved1 = solveSudoku(deepCopy(board1))
+  check("case1 classic board solved", isEqualArray(solved1, expectedSolution1),
+    "solution does not match expected")
+  printBoard(solved1)
+
+  // case2: an almost-complete board (solution with some cells blanked) is restored
+  const board2 = deepCopy(expectedSolution1)
+  board2[0][0] = "."
+  board2[4][4] = "."
+  board2[8][8] = "."
+  board2[2][5] = "."
+  check("case2 blanked cells restored", isEqualArray(solveSudoku(board2), expectedSolution1),
+    "solution does not match expected")
+
+  // case3: solver fills every cell with a valid digit
+  const solved3 = solveSudoku(deepCopy(board1))
+  const allFilled = solved3.every(row => row.every(cell => "123456789".includes(cell)))
+  check("case3 every cell filled 1-9", allFilled)
+}
+
+// make this file a module so its declarations stay file-scoped
+export {}

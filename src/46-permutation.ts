@@ -25,38 +25,36 @@ function permute(nums: number[]): number[][] {
       slice1.concat(slice2)
     )
 
-    //why this index can be changed 
-    console.log('=====index===', index)
-    console.log("slice1", slice1)
-    console.log("slice2", slice2)
-    console.log("rest", rest)
-
-
     if (!rest.length) {
-      console.log('=rest--index===', index)
-      console.log("elemnts push lenth=0", [nums[index]])
       result.push([nums[index]])
       continue
     }
 
     //subPermutation
     for (let j = 0; j < rest.length; j++) {
-      const linePush =
-        [nums[index]].concat(rest[j])
-      console.log('-----j----', j)
-      console.log("linePush", linePush)
-      result.push(linePush)
+      result.push([nums[index]].concat(rest[j]))
     }
-
-    console.log("result", result)
-    console.log(`index ${index}`)
   }
 
   return result
 };
 
+// ---- tests ----
+{
+  const normalize = (perms: number[][]): number[][] =>
+    [...perms].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
 
+  const check = (name: string, actual: number[][], expected: number[][]): void => {
+    const a = JSON.stringify(normalize(actual))
+    const e = JSON.stringify(normalize(expected))
+    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
+  }
 
-const testCase1 = [1, 2, 3]
+  check("case1 [1,2,3]", permute([1, 2, 3]),
+    [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]])
+  check("case2 [0,1]", permute([0, 1]), [[0, 1], [1, 0]])
+  check("case3 [1]", permute([1]), [[1]])
+}
 
-console.log('testCase1', permute(testCase1))
+// make this file a module so its declarations stay file-scoped
+export {}

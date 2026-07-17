@@ -22,14 +22,22 @@ function isValid(s: string): boolean {
   return waitQue.length === 0
 };
 
-const testCase1 = "{([])}"
-const testCase2 = "{([)}"
-const testCase3 = "{([}"
+// ---- tests ----
+{
+  const check = (name: string, actual: boolean, expected: boolean): void => {
+    console.log(actual === expected
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${expected}, got ${actual}`)
+  }
 
-const validRes1 = isValid(testCase1)
-const validRes2 = isValid(testCase2)
-const validRes3 = isValid(testCase3)
+  check("case1 {([])}", isValid("{([])}"), true)
+  check("case2 {([)}", isValid("{([)}"), false)
+  check("case3 {([}", isValid("{([}"), false)
+  check("case4 ()[]{}", isValid("()[]{}"), true)
+  check("case5 ([)]", isValid("([)]"), false)
+  check("case6 lone open (", isValid("("), false)
+  check("case7 lone close ]", isValid("]"), false)
+}
 
-console.log('case1', validRes1 === true)
-console.log('case2', validRes2 === false)
-console.log('case3', validRes3 === false)
+// make this file a module so its declarations stay file-scoped
+export {}

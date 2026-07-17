@@ -23,4 +23,18 @@ function generate(numRows: number): number[][] {
 
 
 
-console.log("result", generate(5))
+// ---- tests ----
+{
+  const check = (name: string, actual: unknown, expected: unknown): void => {
+    console.log(JSON.stringify(actual) === JSON.stringify(expected)
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
+  }
+
+  check("case1 numRows=1", generate(1), [[1]])
+  check("case2 numRows=2", generate(2), [[1], [1, 1]])
+  check("case3 numRows=5", generate(5), [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]])
+}
+
+// make this file a module so its declarations stay file-scoped
+export {}

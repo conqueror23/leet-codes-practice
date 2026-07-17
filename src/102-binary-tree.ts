@@ -66,10 +66,20 @@ function levelOrder(root: TreeNode | null): number[][] {
   return result
 }
 
-const input: (number | null)[] = [3, 9, 20, null, null, 15, 7];
+// ---- tests ----
+{
+  const eq = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b)
+  const check = (name: string, actual: unknown, expected: unknown): void => {
+    console.log(eq(actual, expected)
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
+  }
 
+  check("case1 [3,9,20,null,null,15,7]", levelOrder(buildTree([3, 9, 20, null, null, 15, 7])), [[3], [9, 20], [15, 7]])
+  check("case2 [1]", levelOrder(buildTree([1])), [[1]])
+  check("case3 []", levelOrder(buildTree([])), [])
+  check("case4 [1,2,3,4,null,null,5]", levelOrder(buildTree([1, 2, 3, 4, null, null, 5])), [[1], [2, 3], [4, 5]])
+}
 
-const root = buildTree(input);
-console.log(root)
-
-console.log(levelOrder(root)); // [[3], [9, 20], [15, 7]]/ const: [[3],[9,20],[15,7]]
+// make this file a module so its declarations stay file-scoped
+export {}

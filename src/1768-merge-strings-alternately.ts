@@ -29,4 +29,19 @@ function mergeAlternately(word1: string, word2: string): string {
 };
 
 
-console.log("adbecfgh ==", "adbecfgh" === mergeAlternately("abc", "defgh"))
+// ---- tests ----
+{
+  const check = (name: string, actual: string, expected: string): void => {
+    console.log(actual === expected
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected "${expected}", got "${actual}"`)
+  }
+
+  check("case1 same length", mergeAlternately("abc", "pqr"), "apbqcr")
+  check("case2 word2 longer", mergeAlternately("ab", "pqrs"), "apbqrs")
+  check("case3 word1 longer", mergeAlternately("abcd", "pq"), "apbqcd")
+  check("case4 [abc, defgh]", mergeAlternately("abc", "defgh"), "adbecfgh")
+}
+
+// make this file a module so its declarations stay file-scoped
+export {}

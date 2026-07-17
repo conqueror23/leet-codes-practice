@@ -26,24 +26,34 @@ function getIntersectionNode(headA: ListNode | null, headB: ListNode | null): Li
         }
     }
 
-    return pointA.next
+    return pointA
 };
 
+// ---- tests ----
+{
+  const check = (name: string, actual: ListNode | null, expected: ListNode | null): void => {
+    console.log(actual === expected
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected node ${expected?.val ?? null}, got node ${actual?.val ?? null}`)
+  }
 
+  // case1: listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], intersecting at node 8
+  const shared = new ListNode(8, new ListNode(4, new ListNode(5)))
+  const headA = new ListNode(4, new ListNode(1, shared))
+  const headB = new ListNode(5, new ListNode(6, new ListNode(1, shared)))
+  check("case1 intersect at 8", getIntersectionNode(headA, headB), shared)
 
+  // case2: no intersection
+  const headC = new ListNode(2, new ListNode(6, new ListNode(4)))
+  const headD = new ListNode(1, new ListNode(5))
+  check("case2 no intersection", getIntersectionNode(headC, headD), null)
 
-const node5 = new ListNode(5)
-const node4 = new ListNode(4, node5)
-const node8 = new ListNode(8, node4)
+  // case3: both lists are the same list — intersection is the head
+  check("case3 identical lists", getIntersectionNode(headA, headA), headA)
 
-const node1 = new ListNode(1, node8)
-const headA = new ListNode(4, node1)
+  // case4: one list empty
+  check("case4 empty list", getIntersectionNode(headA, null), null)
+}
 
-
-const node6 = new ListNode(6, node1)
-const headB = new ListNode(5, node6)
-
-
-const case1 = getIntersectionNode(headA, headB)
-
-console.log("case1", case1)
+// make this file a module so its declarations stay file-scoped
+export {}

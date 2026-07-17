@@ -25,7 +25,7 @@ function floodFill(image: number[][], sr: number, sc: number, color: number): nu
 
 function floodFillBFS(image: number[][], sr: number, sc: number, color: number) {
   const oldColor = image[sr][sc]
-  if (oldColor === color) return
+  if (oldColor === color) return image
 
   const rows = image.length;
   const cols = image[0].length;
@@ -49,13 +49,41 @@ function floodFillBFS(image: number[][], sr: number, sc: number, color: number) 
   return image
 }
 
-const image = [[1, 1, 1], [1, 1, 0], [1, 0, 1]]
-const sr = 1
-const sc = 1
-const color = 2
+// ---- tests ----
+{
+  const check = (name: string, actual: unknown, expected: unknown): void => {
+    console.log(JSON.stringify(actual) === JSON.stringify(expected)
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
+  }
 
-// const result = floodFill(image, sr, sc, color)
-const result = floodFillBFS(image, sr, sc, color)
-console.log(result)
+  const deepCopy = (image: number[][]): number[][] => image.map(row => [...row])
 
-const expectedOutput = [[2, 2, 2], [2, 2, 0], [2, 0, 1]]
+  type Case = { name: string, image: number[][], sr: number, sc: number, color: number, expected: number[][] }
+  const cases: Case[] = [
+    {
+      name: "case1 classic fill",
+      image: [[1, 1, 1], [1, 1, 0], [1, 0, 1]], sr: 1, sc: 1, color: 2,
+      expected: [[2, 2, 2], [2, 2, 0], [2, 0, 1]],
+    },
+    {
+      name: "case2 same color no-op",
+      image: [[0, 0, 0], [0, 0, 0]], sr: 0, sc: 0, color: 0,
+      expected: [[0, 0, 0], [0, 0, 0]],
+    },
+    {
+      name: "case3 fill bottom-right region",
+      image: [[0, 0, 0], [0, 1, 1]], sr: 1, sc: 1, color: 9,
+      expected: [[0, 0, 0], [0, 9, 9]],
+    },
+  ]
+
+  // both implementations mutate the image, so each run gets a fresh copy
+  for (const c of cases) {
+    check(`${c.name} (DFS)`, floodFill(deepCopy(c.image), c.sr, c.sc, c.color), c.expected)
+    check(`${c.name} (BFS)`, floodFillBFS(deepCopy(c.image), c.sr, c.sc, c.color), c.expected)
+  }
+}
+
+// make this file a module so its declarations stay file-scoped
+export {}

@@ -170,16 +170,51 @@ function findAllOrdersIterative(
   return result;
 }
 
-const numCourses = 4
-const prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]
+// ---- tests ----
+{
+  // orders can come back in any sequence, so normalize before comparing
+  const normalize = (orders: number[][]): number[][] =>
+    [...orders].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
 
+  const check = (name: string, actual: number[][], expected: number[][]): void => {
+    const a = JSON.stringify(normalize(actual))
+    const e = JSON.stringify(normalize(expected))
+    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
+  }
 
-// const order = findOrder(numCourses, prerequisites)
+  type Case = { name: string, numCourses: number, prerequisites: number[][], expected: number[][] }
+  const cases: Case[] = [
+    {
+      name: "case1 diamond",
+      numCourses: 4,
+      prerequisites: [[1, 0], [2, 0], [3, 1], [3, 2]],
+      expected: [[0, 1, 2, 3], [0, 2, 1, 3]],
+    },
+    {
+      name: "case2 simple chain",
+      numCourses: 2,
+      prerequisites: [[1, 0]],
+      expected: [[0, 1]],
+    },
+    {
+      name: "case3 cycle has no order",
+      numCourses: 2,
+      prerequisites: [[1, 0], [0, 1]],
+      expected: [],
+    },
+    {
+      name: "case4 single course",
+      numCourses: 1,
+      prerequisites: [],
+      expected: [[0]],
+    },
+  ]
 
+  for (const c of cases) {
+    check(`${c.name} (backtracking)`, findAllOrders(c.numCourses, c.prerequisites), c.expected)
+    check(`${c.name} (iterative)`, findAllOrdersIterative(c.numCourses, c.prerequisites), c.expected)
+  }
+}
 
-
-//const order = findAllOrders(numCourses, prerequisites)
-
-const order = findAllOrdersIterative(numCourses, prerequisites)
-
-console.log(order)
+// make this file a module so its declarations stay file-scoped
+export {}

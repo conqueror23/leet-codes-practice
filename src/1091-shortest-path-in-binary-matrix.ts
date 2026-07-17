@@ -34,13 +34,24 @@ function shortestPathBinaryMatrix(grid: number[][]): number {
       queue.push([nx, ny, distance + 1])
     }
   }
-  return 1
+  return -1
 };
 
-const grid = [[0, 0, 0], [1, 1, 0], [1, 1, 0]]
+// ---- tests ----
+{
+  const check = (name: string, actual: unknown, expected: unknown): void => {
+    console.log(JSON.stringify(actual) === JSON.stringify(expected)
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
+  }
 
-// const grid = [[1, 0, 0], [1, 1, 0], [1, 1, 0]]
+  // the function mutates the grid, so each case gets a fresh input
+  check("case1 [[0,1],[1,0]]", shortestPathBinaryMatrix([[0, 1], [1, 0]]), 2)
+  check("case2 [[0,0,0],[1,1,0],[1,1,0]]", shortestPathBinaryMatrix([[0, 0, 0], [1, 1, 0], [1, 1, 0]]), 4)
+  check("case3 blocked start", shortestPathBinaryMatrix([[1, 0, 0], [1, 1, 0], [1, 1, 0]]), -1)
+  check("case4 unreachable", shortestPathBinaryMatrix([[0, 1], [1, 1]]), -1)
+  check("case5 single cell", shortestPathBinaryMatrix([[0]]), 1)
+}
 
-const res = shortestPathBinaryMatrix(grid)
-
-console.log(res)
+// make this file a module so its declarations stay file-scoped
+export {}

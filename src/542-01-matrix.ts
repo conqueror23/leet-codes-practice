@@ -1,10 +1,3 @@
-const directives = [
-  [0, 1],
-  [0, -1],
-  [1, 0],
-  [-1, 0]
-]
-
 // solution 1 BFS
 function updateMatrixBFS(mat: number[][]): number[][] {
   const rows = mat.length;
@@ -105,3 +98,39 @@ function updateMatrixDP(mat: number[][]): number[][] {
 
   return dist;
 }
+
+// ---- tests ----
+{
+  const check = (name: string, actual: unknown, expected: unknown): void => {
+    console.log(JSON.stringify(actual) === JSON.stringify(expected)
+      ? `PASS ${name}`
+      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
+  }
+
+  type Case = { name: string, mat: number[][], expected: number[][] }
+  const cases: Case[] = [
+    {
+      name: "case1 single 1 in center",
+      mat: [[0, 0, 0], [0, 1, 0], [0, 0, 0]],
+      expected: [[0, 0, 0], [0, 1, 0], [0, 0, 0]],
+    },
+    {
+      name: "case2 bottom row of 1s",
+      mat: [[0, 0, 0], [0, 1, 0], [1, 1, 1]],
+      expected: [[0, 0, 0], [0, 1, 0], [1, 2, 1]],
+    },
+    {
+      name: "case3 single zero corner",
+      mat: [[0, 1, 1], [1, 1, 1]],
+      expected: [[0, 1, 2], [1, 2, 3]],
+    },
+  ]
+
+  for (const c of cases) {
+    check(`${c.name} (BFS)`, updateMatrixBFS(c.mat), c.expected)
+    check(`${c.name} (DP)`, updateMatrixDP(c.mat), c.expected)
+  }
+}
+
+// make this file a module so its declarations stay file-scoped
+export {}
