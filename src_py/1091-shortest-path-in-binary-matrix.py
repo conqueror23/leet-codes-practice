@@ -10,10 +10,15 @@ path from top-left (0,0) to bottom-right (n-1,n-1). A clear path moves through
 from collections import deque
 from typing import List
 
-
 DIRECTIONS = [
-    (0, 1), (0, -1), (1, 0), (-1, 0),
-    (1, 1), (-1, 1), (1, -1), (-1, -1),
+    (0, 1),
+    (0, -1),
+    (1, 0),
+    (-1, 0),
+    (1, 1),
+    (-1, 1),
+    (1, -1),
+    (-1, -1),
 ]
 
 
@@ -33,7 +38,12 @@ def shortest_path_binary_matrix(grid: List[List[int]]) -> int:
 
         for dx, dy in DIRECTIONS:
             nx, ny = x + dx, y + dy
-            if 0 <= nx < n and 0 <= ny < n and not visited[nx][ny] and grid[nx][ny] == 0:
+            if (
+                0 <= nx < n
+                and 0 <= ny < n
+                and not visited[nx][ny]
+                and grid[nx][ny] == 0
+            ):
                 visited[nx][ny] = True
                 queue.append((nx, ny, dist + 1))
 

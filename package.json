@@ -9,7 +9,8 @@
     "lint:fix": "eslint src/ to_be_solved/ --fix",
     "run": "ts-node",
     "test": "echo \"Run problems directly with: npx ts-node to_be_solved/[category]/[difficulty]/[problem].ts\"",
-    "watch": "nodemon --exec ts-node"
+    "watch": "nodemon --exec ts-node",
+    "watch:py": "nodemon --ext py --watch src_py --exec python3"
   },
   "keywords": [
     "leetcode",
