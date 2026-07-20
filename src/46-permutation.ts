@@ -1,3 +1,5 @@
+import { check as sharedCheck } from "./utils/check"
+
 // var permute = function(xs) {
 //       let ret = [];
 //     for (let i = 0; i < xs.length; i = i + 1) {
@@ -44,11 +46,8 @@ function permute(nums: number[]): number[][] {
   const normalize = (perms: number[][]): number[][] =>
     [...perms].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
 
-  const check = (name: string, actual: number[][], expected: number[][]): void => {
-    const a = JSON.stringify(normalize(actual))
-    const e = JSON.stringify(normalize(expected))
-    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
-  }
+  const check = (name: string, actual: number[][], expected: number[][]): void =>
+    sharedCheck(name, normalize(actual), normalize(expected))
 
   check("case1 [1,2,3]", permute([1, 2, 3]),
     [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]])

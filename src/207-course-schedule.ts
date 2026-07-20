@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 function canFinishBFS(numCourses: number, prerequisites: number[][]): boolean {
   const graph: number[][] = Array.from({ length: numCourses }, () => [])
   const indegree = Array(numCourses).fill(0)
@@ -62,11 +64,6 @@ const canFinishDFS = (numCourses: number, prerequisites: number[][]): boolean =>
 
 // ---- tests ----
 {
-  const check = (name: string, actual: boolean, expected: boolean): void => {
-    console.log(actual === expected
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${expected}, got ${actual}`)
-  }
 
   type Case = { name: string, numCourses: number, prerequisites: number[][], expected: boolean }
   const cases: Case[] = [

@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 function maxProfit(prices: number[]): number {
   let minPrice = prices[0];
   let maxProfit = 0;
@@ -13,11 +15,6 @@ function maxProfit(prices: number[]): number {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(actual === expected
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   check("case1 [7,1,5,3,6,4]", maxProfit([7, 1, 5, 3, 6, 4]), 5)
   check("case2 [7,6,4,3,1] no profit", maxProfit([7, 6, 4, 3, 1]), 0)

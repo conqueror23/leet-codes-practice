@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 //s1
 // function addBinary(a: string, b: string): string {
 //   const aNumber =parseInt(a,2)
@@ -25,11 +27,6 @@ function addBinary(a: string, b: string): string {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: string, expected: string): void => {
-    console.log(actual === expected
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected "${expected}", got "${actual}"`)
-  }
 
   check("case1 11 + 1", addBinary("11", "1"), "100")
   check("case2 1010 + 1011", addBinary("1010", "1011"), "10101")

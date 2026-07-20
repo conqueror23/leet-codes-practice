@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 function getRow(rowIndex: number): number[] {
   let rowAbove: number[] = []
 
@@ -15,11 +17,6 @@ function getRow(rowIndex: number): number[] {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(JSON.stringify(actual) === JSON.stringify(expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   check("case1 rowIndex=0", getRow(0), [1])
   check("case2 rowIndex=1", getRow(1), [1, 1])

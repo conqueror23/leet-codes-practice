@@ -1,3 +1,5 @@
+import { checkTrue } from "./utils/check"
+
 class ListNode {
     val: number
     next: ListNode | null
@@ -31,11 +33,8 @@ function getIntersectionNode(headA: ListNode | null, headB: ListNode | null): Li
 
 // ---- tests ----
 {
-  const check = (name: string, actual: ListNode | null, expected: ListNode | null): void => {
-    console.log(actual === expected
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected node ${expected?.val ?? null}, got node ${actual?.val ?? null}`)
-  }
+  const check = (name: string, actual: ListNode | null, expected: ListNode | null): void =>
+    checkTrue(name, actual === expected, `expected node ${expected?.val ?? null}, got node ${actual?.val ?? null}`)
 
   // case1: listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], intersecting at node 8
   const shared = new ListNode(8, new ListNode(4, new ListNode(5)))

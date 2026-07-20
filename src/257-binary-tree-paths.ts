@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 class TreeNode {
   val: number
   left: TreeNode | null
@@ -31,12 +33,6 @@ function binaryTreePaths(root: TreeNode | null): string[] {
 
 // ---- tests ----
 {
-  const eq = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b)
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(eq(actual, expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   // case1: [1,2,3,null,5]
   const tree1 = new TreeNode(1,

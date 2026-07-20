@@ -1,3 +1,5 @@
+import { check as sharedCheck } from "./utils/check"
+
 const findAllOrdersIterative = (numCourses: number, prerequisites: number[][]) => {
   const graph: number[][] = Array.from({ length: numCourses }, () => [])
   const initialIndegree = Array(numCourses).fill(0)
@@ -146,11 +148,8 @@ const findAllOrderBacktracking = (numCourses: number, prerequest: number[][]) =>
   const normalize = (orders: number[][]): number[][] =>
     [...orders].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
 
-  const check = (name: string, actual: number[][], expected: number[][]): void => {
-    const a = JSON.stringify(normalize(actual))
-    const e = JSON.stringify(normalize(expected))
-    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
-  }
+  const check = (name: string, actual: number[][], expected: number[][]): void =>
+    sharedCheck(name, normalize(actual), normalize(expected))
 
   type Case = { name: string, numCourses: number, prerequisites: number[][], expected: number[][] }
   const cases: Case[] = [

@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 function mergeAlternately(word1: string, word2: string): string {
     const A = word1.length
     const B = word2.length
@@ -31,11 +33,6 @@ function mergeAlternately(word1: string, word2: string): string {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: string, expected: string): void => {
-    console.log(actual === expected
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected "${expected}", got "${actual}"`)
-  }
 
   check("case1 same length", mergeAlternately("abc", "pqr"), "apbqcr")
   check("case2 word2 longer", mergeAlternately("ab", "pqrs"), "apbqrs")

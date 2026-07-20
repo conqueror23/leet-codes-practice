@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 class TreeNode {
   val: number
   left: TreeNode | null
@@ -32,11 +34,6 @@ function inorderTraversal(root: TreeNode | null): number[] {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(JSON.stringify(actual) === JSON.stringify(expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   // case1: [1,null,2,3] — right child with left grandchild
   const tree1 = new TreeNode(1, null, new TreeNode(2, new TreeNode(3)))

@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 function countBits(n: number): number[] {
   const result: number[] = []
   for (let c = 0; c <= n; c++) {
@@ -12,11 +14,6 @@ function countBits(n: number): number[] {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(JSON.stringify(actual) === JSON.stringify(expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   check("case1 n=0", countBits(0), [0])
   check("case2 n=2", countBits(2), [0, 1, 1])

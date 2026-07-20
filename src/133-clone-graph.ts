@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 /**
  * Definition for _CNode.
  * class _CNode {
@@ -119,12 +121,6 @@ const toAdjList = (node: CNode | null): number[][] => {
 
 // ---- tests ----
 {
-  const eq = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b)
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(eq(actual, expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   const cases: number[][][] = [
     [[2, 4], [1, 3], [2, 4], [1, 3]], // 4-node cycle

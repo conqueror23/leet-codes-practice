@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 // solution 1 BFS
 function updateMatrixBFS(mat: number[][]): number[][] {
   const rows = mat.length;
@@ -101,11 +103,6 @@ function updateMatrixDP(mat: number[][]): number[][] {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(JSON.stringify(actual) === JSON.stringify(expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   type Case = { name: string, mat: number[][], expected: number[][] }
   const cases: Case[] = [

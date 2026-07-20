@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 class TreeNode {
   val: number;
   left: TreeNode | null;
@@ -68,12 +70,6 @@ function levelOrder(root: TreeNode | null): number[][] {
 
 // ---- tests ----
 {
-  const eq = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b)
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(eq(actual, expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   check("case1 [3,9,20,null,null,15,7]", levelOrder(buildTree([3, 9, 20, null, null, 15, 7])), [[3], [9, 20], [15, 7]])
   check("case2 [1]", levelOrder(buildTree([1])), [[1]])

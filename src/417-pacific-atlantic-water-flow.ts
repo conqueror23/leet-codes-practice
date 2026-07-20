@@ -1,3 +1,5 @@
+import { check as sharedCheck } from "./utils/check"
+
 // function pacificAtlantic(heights: number[][]): number[][] {
 //  const rows = heights.length;
 //  const cols = heights[0].length;
@@ -174,11 +176,8 @@ function pacificAtlantic(heights: number[][]): number[][] {
   const normalize = (cells: number[][]): number[][] =>
     [...cells].sort((a, b) => (a[0] - b[0]) || (a[1] - b[1]))
 
-  const check = (name: string, actual: number[][], expected: number[][]): void => {
-    const a = JSON.stringify(normalize(actual))
-    const e = JSON.stringify(normalize(expected))
-    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
-  }
+  const check = (name: string, actual: number[][], expected: number[][]): void =>
+    sharedCheck(name, normalize(actual), normalize(expected))
 
   check("case1 classic 5x5",
     pacificAtlantic([

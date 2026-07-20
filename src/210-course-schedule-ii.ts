@@ -1,3 +1,5 @@
+import { check as sharedCheck } from "./utils/check"
+
 
 //Original
 // function findOrder(numCourses: number, prerequisites: number[][]): number[] {
@@ -176,11 +178,8 @@ function findAllOrdersIterative(
   const normalize = (orders: number[][]): number[][] =>
     [...orders].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
 
-  const check = (name: string, actual: number[][], expected: number[][]): void => {
-    const a = JSON.stringify(normalize(actual))
-    const e = JSON.stringify(normalize(expected))
-    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
-  }
+  const check = (name: string, actual: number[][], expected: number[][]): void =>
+    sharedCheck(name, normalize(actual), normalize(expected))
 
   type Case = { name: string, numCourses: number, prerequisites: number[][], expected: number[][] }
   const cases: Case[] = [

@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 function plusOne(digits: number[]): number[] {
     const dLength = digits.length
     let r = digits[dLength-1] ?? 0
@@ -12,11 +14,6 @@ function plusOne(digits: number[]): number[] {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(JSON.stringify(actual) === JSON.stringify(expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   check("case1 [1,2,3]", plusOne([1, 2, 3]), [1, 2, 4])
   check("case2 [9] carries", plusOne([9]), [1, 0])

@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 function generate(numRows: number): number[][] {
   const refArray: number[][] = []
 
@@ -25,11 +27,6 @@ function generate(numRows: number): number[][] {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(JSON.stringify(actual) === JSON.stringify(expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   check("case1 numRows=1", generate(1), [[1]])
   check("case2 numRows=2", generate(2), [[1], [1, 1]])

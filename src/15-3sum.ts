@@ -1,3 +1,5 @@
+import { check as sharedCheck } from "./utils/check"
+
 function threeSum(nums: number[]): number[][] {
   const result = new Map<string, number[]>()
   const sortedNums = nums.sort((a, b) => a - b)
@@ -38,11 +40,8 @@ function threeSum(nums: number[]): number[][] {
       .map(t => [...t].sort((a, b) => a - b))
       .sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
 
-  const check = (name: string, actual: number[][], expected: number[][]): void => {
-    const a = JSON.stringify(normalize(actual))
-    const e = JSON.stringify(normalize(expected))
-    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
-  }
+  const check = (name: string, actual: number[][], expected: number[][]): void =>
+    sharedCheck(name, normalize(actual), normalize(expected))
 
   check("case1 [-1,0,1,2,-1,-4]", threeSum([-1, 0, 1, 2, -1, -4]), [[-1, -1, 2], [-1, 0, 1]])
   check("case2 [0,1,1] no triplet", threeSum([0, 1, 1]), [])

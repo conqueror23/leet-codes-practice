@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 function isValid(s: string): boolean {
   const dictMap = new Map([
     ['[', ']'],
@@ -24,11 +26,6 @@ function isValid(s: string): boolean {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: boolean, expected: boolean): void => {
-    console.log(actual === expected
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${expected}, got ${actual}`)
-  }
 
   check("case1 {([])}", isValid("{([])}"), true)
   check("case2 {([)}", isValid("{([)}"), false)

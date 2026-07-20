@@ -1,3 +1,5 @@
+import { check as sharedCheck } from "./utils/check"
+
 /***
 You are given a string s and an array of strings words. All the strings of words are of the same length.
 A concatenated string is a string that exactly contains all the strings of any permutation of words concatenated.
@@ -63,11 +65,8 @@ const findSubstring = (s: string, words: string[]): number[] => {
 {
   const normalize = (indices: number[]): number[] => [...indices].sort((a, b) => a - b)
 
-  const check = (name: string, actual: number[], expected: number[]): void => {
-    const a = JSON.stringify(normalize(actual))
-    const e = JSON.stringify(normalize(expected))
-    console.log(a === e ? `PASS ${name}` : `FAIL ${name}: expected ${e}, got ${a}`)
-  }
+  const check = (name: string, actual: number[], expected: number[]): void =>
+    sharedCheck(name, normalize(actual), normalize(expected))
 
   check("case1 barfoothefoobarman", findSubstring("barfoothefoobarman", ["foo", "bar"]), [0, 9])
   check("case2 repeated word not available", findSubstring("wordgoodgoodgoodbestword", ["word", "good", "best", "word"]), [])

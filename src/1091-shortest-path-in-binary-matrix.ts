@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 /**
   *  start from top left (0,0) and move all the way to bottom right (n-1,n-1)
   *
@@ -39,11 +41,6 @@ function shortestPathBinaryMatrix(grid: number[][]): number {
 
 // ---- tests ----
 {
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(JSON.stringify(actual) === JSON.stringify(expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   // the function mutates the grid, so each case gets a fresh input
   check("case1 [[0,1],[1,0]]", shortestPathBinaryMatrix([[0, 1], [1, 0]]), 2)

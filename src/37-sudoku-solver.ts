@@ -1,3 +1,5 @@
+import { checkTrue as check } from "./utils/check"
+
 /**
 Write a program to solve a Sudoku puzzle by filling the empty cells.
 A sudoku solution must satisfy all of the following rules:
@@ -198,9 +200,6 @@ function printBoard(board: string[][]): void {
 
 // ---- tests ----
 {
-  const check = (name: string, pass: boolean, detail = ""): void => {
-    console.log(pass ? `PASS ${name}` : `FAIL ${name}${detail ? `: ${detail}` : ""}`)
-  }
 
   const deepCopy = (board: string[][]): string[][] => board.map(row => [...row])
 

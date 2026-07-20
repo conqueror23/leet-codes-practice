@@ -1,3 +1,5 @@
+import { check } from "./utils/check"
+
 function floodFill(image: number[][], sr: number, sc: number, color: number): number[][] {
   const oldColor = image[sr][sc];
 
@@ -51,11 +53,6 @@ function floodFillBFS(image: number[][], sr: number, sc: number, color: number) 
 
 // ---- tests ----
 {
-  const check = (name: string, actual: unknown, expected: unknown): void => {
-    console.log(JSON.stringify(actual) === JSON.stringify(expected)
-      ? `PASS ${name}`
-      : `FAIL ${name}: expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`)
-  }
 
   const deepCopy = (image: number[][]): number[][] => image.map(row => [...row])
 
