@@ -36,8 +36,6 @@ function maxAreaOfIsland(grid: number[][]): number {
       }
     }
   }
-
-
   return maxSize
 };
 
@@ -81,8 +79,6 @@ function maxAreaOfIslandBFS(grid: number[][]): number {
     }
   }
 
-
-
   return maxSize
 }
 
@@ -93,9 +89,9 @@ const grid1 = [[1]]
 const res1 = 1
 
 {
-  // check(`grid with res`, maxAreaOfIsland(grid), res)
-  // check(`grid1 with res1`, maxAreaOfIsland(grid1), res1)
-  //
+  check(`grid with res`, maxAreaOfIsland(grid), res)
+  check(`grid1 with res1`, maxAreaOfIsland(grid1), res1)
+
   check(`grid1 with res1 - bfs`, maxAreaOfIslandBFS(grid1), res1)
   check(`grid with res -bfs`, maxAreaOfIslandBFS(grid), res)
 }
