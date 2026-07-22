@@ -57,12 +57,12 @@ def build_tree(values: List[Optional[int]]) -> Optional[TreeNode]:
         node = queue.popleft()
 
         if i < len(values) and values[i] is not None:
-            node.left = TreeNode(values[i])
+            node.left = TreeNode(values[i])  # pyright: ignore
             queue.append(node.left)
         i += 1
 
         if i < len(values) and values[i] is not None:
-            node.right = TreeNode(values[i])
+            node.right = TreeNode(values[i])  # pyright: ignore
             queue.append(node.right)
         i += 1
 

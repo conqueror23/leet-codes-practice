@@ -34,9 +34,12 @@ def permute(nums: List[int]) -> List[List[int]]:
 if __name__ == "__main__":
     got = permute([1, 2, 3])
     expected = [
-        [1, 2, 3], [1, 3, 2],
-        [2, 1, 3], [2, 3, 1],
-        [3, 1, 2], [3, 2, 1],
+        [1, 2, 3],
+        [1, 3, 2],
+        [2, 1, 3],
+        [2, 3, 1],
+        [3, 1, 2],
+        [3, 2, 1],
     ]
     assert sorted(got) == sorted(expected), got
     assert permute([1]) == [[1]]

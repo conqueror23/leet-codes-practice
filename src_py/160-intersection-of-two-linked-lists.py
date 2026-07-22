@@ -16,8 +16,9 @@ class ListNode:
         self.next = next
 
 
-def get_intersection_node(headA: Optional[ListNode],
-                          headB: Optional[ListNode]) -> Optional[ListNode]:
+def get_intersection_node(
+    headA: Optional[ListNode], headB: Optional[ListNode]
+) -> Optional[ListNode]:
     if headA is None or headB is None:
         return None
 
@@ -43,4 +44,7 @@ if __name__ == "__main__":
     a = ListNode(1, ListNode(2))
     b = ListNode(3, ListNode(4))
     assert get_intersection_node(a, b) is None
-    print("160 OK: intersection val =", get_intersection_node(headA, headB).val)
+    print(
+        "160 OK: intersection val =",
+        get_intersection_node(headA, headB).val,  # pyright: ignore
+    )
