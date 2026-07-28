@@ -1,4 +1,4 @@
-import { check } from "./utils/check";
+import { check } from "../utils/check";
 
 function StringExpression(str: string): string {
   const digitMap: Record<string, string> = {
