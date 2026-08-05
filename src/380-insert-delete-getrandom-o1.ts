@@ -1,4 +1,3 @@
-import { check } from "./utils/check"
 
 class RandomizedSet {
   private values: number[] = [];
@@ -29,6 +28,7 @@ class RandomizedSet {
     this.values[index] = lastValue;
     this.indices.set(lastValue, index);
 
+    //as moving is O(1)
     this.values.pop();
     this.indices.delete(val);
 
@@ -64,7 +64,7 @@ class RandomizedSet {
   console.log("getRandom", res)
 
   console.log(rand)
-  rand.remove(2)
+  rand.remove(3)
   console.log(rand)
 
 }
