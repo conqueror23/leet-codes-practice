@@ -5,12 +5,10 @@ import { check } from "./utils/check"
   *
   */
 function shortestPathBinaryMatrix(grid: number[][]): number {
-
   const directions = [
     [0, 1], [0, -1], [1, 0], [-1, 0],
     [1, 1], [-1, 1], [1, -1], [-1, -1]
   ]
-
 
   // no go grid
   if (grid[0][0] !== 0 || grid[grid.length - 1][grid.length - 1] !== 0) return -1
@@ -51,4 +49,4 @@ function shortestPathBinaryMatrix(grid: number[][]): number {
 }
 
 // make this file a module so its declarations stay file-scoped
-export {}
+export { }
