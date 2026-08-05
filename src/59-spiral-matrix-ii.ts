@@ -77,7 +77,7 @@ const res1 = [
 {
   check(`${n} -- res ${res} `, generateMatrix(n), res)
 
-  // check(`${n1} -- res ${res1} `, generateMatrix(n1), res1)
+  check(`${n1} -- res ${res1} `, generateMatrix(n1), res1)
 }
 
 export { }
