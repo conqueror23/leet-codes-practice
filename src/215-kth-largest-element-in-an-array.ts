@@ -14,7 +14,6 @@ function findKthLargest(nums: number[], k: number): number {
   const partition = (left: number, right: number): number => {
     const pivot = nums[right]
     let storeIndex = left
-
     for (let i = left; i < right; i++) {
       // when that numb is <pivot
       if (nums[i] < pivot) {
@@ -22,7 +21,6 @@ function findKthLargest(nums: number[], k: number): number {
         storeIndex++
       }
     }
-
     //storeIndex locked there
     [nums[storeIndex], nums[right]] = [nums[right], nums[storeIndex]]
     //each time it move one values there and returns where it actually make a difference
@@ -33,7 +31,6 @@ function findKthLargest(nums: number[], k: number): number {
 
 
 function findKthLargestMinHeap(nums: number[], k: number): number {
-
   class MinHeap {
     private heap: number[] = [];
 
@@ -54,7 +51,6 @@ function findKthLargestMinHeap(nums: number[], k: number): number {
       if (this.heap.length === 0) return undefined;
 
       const min = this.heap[0];
-
       const last = this.heap.pop()!;
 
       if (this.heap.length > 0) {
@@ -64,7 +60,6 @@ function findKthLargestMinHeap(nums: number[], k: number): number {
 
       return min;
     }
-
 
     private bubbleUp() {
       let index = this.heap.length - 1;
@@ -83,16 +78,12 @@ function findKthLargestMinHeap(nums: number[], k: number): number {
       }
     }
 
-
     private bubbleDown() {
       let index = 0;
-
       while (true) {
         let smallest = index;
-
         const left = index * 2 + 1;
         const right = index * 2 + 2;
-
 
         if (
           left < this.heap.length &&
@@ -100,20 +91,13 @@ function findKthLargestMinHeap(nums: number[], k: number): number {
         ) {
           smallest = left;
         }
-
-
         if (
           right < this.heap.length &&
           this.heap[right] < this.heap[smallest]
         ) {
           smallest = right;
         }
-
-
-        if (smallest === index) {
-          break;
-        }
-
+        if (smallest === index) break;
 
         [this.heap[index], this.heap[smallest]] =
           [this.heap[smallest], this.heap[index]];
@@ -123,21 +107,16 @@ function findKthLargestMinHeap(nums: number[], k: number): number {
     }
   }
 
-
   const heap = new MinHeap();
 
-
   for (const num of nums) {
-
     heap.push(num);
-
 
     // maintain only k largest elements
     if (heap.size() > k) {
       heap.pop();
     }
   }
-
 
   return heap.peek();
 }

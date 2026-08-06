@@ -21,10 +21,8 @@ function buildTree(values: Array<number | null>): TreeNode | null {
 
   while (i < values.length && queue.length > 0) {
     const node = queue.shift()!;
-
     const leftValue = values[i];
     i++;
-
     if (leftValue !== undefined && leftValue !== null) {
       node.left = new TreeNode(leftValue)
       queue.push(node.left)
@@ -78,4 +76,4 @@ function levelOrder(root: TreeNode | null): number[][] {
 }
 
 // make this file a module so its declarations stay file-scoped
-export {}
+export { }

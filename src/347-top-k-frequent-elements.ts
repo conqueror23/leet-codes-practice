@@ -2,7 +2,6 @@ import { check } from "./utils/check"
 
 function topKFrequent(nums: number[], k: number): number[] {
   const frequent: number[] = []
-
   const frequentMap = new Map<number, number>()
 
   for (const num of nums) {
@@ -24,12 +23,10 @@ function topKFrequent(nums: number[], k: number): number[] {
   const slices = temp.slice(0, k)
   console.log(slices)
 
-
   return Array.from(frequentMap.entries())
     .sort((a, b) => b[1] - a[1])
     .slice(0, k)
     .map(([num]) => num);
-
 };
 
 function topKFrequentOpt(nums: number[], k: number): number[] {
@@ -80,13 +77,11 @@ class MinHeap {
   peek() {
     return this.heap[0];
   }
-
   // Insert element
   push(item: [number, number]) {
     this.heap.push(item);
     this.bubbleUp();
   }
-
   // Remove smallest element
   pop() {
     if (this.heap.length === 1) {

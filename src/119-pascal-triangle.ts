@@ -25,4 +25,4 @@ function getRow(rowIndex: number): number[] {
 }
 
 // make this file a module so its declarations stay file-scoped
-export {}
+export { }
