@@ -31,6 +31,9 @@ function groupAnagramsOpt(strs: string[]): string[][] {
     const key = frequency.join("#")
     const group = groups.get(key)
 
+    console.log("gropu", groups)
+    console.log("gropu", group)
+
     if (group) {
       group.push(word)
     } else {
@@ -40,6 +43,7 @@ function groupAnagramsOpt(strs: string[]): string[][] {
 
   return Array.from(groups.values())
 }
+
 
 const strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
 

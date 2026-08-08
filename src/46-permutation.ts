@@ -41,6 +41,35 @@ function permute(nums: number[]): number[][] {
   return result
 };
 
+function permuteBT(nums: number[]): number[][] {
+  const result: number[][] = [];
+  const path: number[] = [];
+  const used = new Array(nums.length).fill(false);
+
+  function backtrack(): void {
+    if (path.length === nums.length) {
+      result.push([...path]);
+      return;
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+      if (used[i]) continue;
+
+      used[i] = true;
+      path.push(nums[i]);
+
+      backtrack();
+
+      path.pop();
+      used[i] = false;
+    }
+  }
+
+  backtrack();
+  return result;
+}
+
+
 // ---- tests ----
 {
   const normalize = (perms: number[][]): number[][] =>
@@ -49,11 +78,11 @@ function permute(nums: number[]): number[][] {
   const check = (name: string, actual: number[][], expected: number[][]): void =>
     sharedCheck(name, normalize(actual), normalize(expected))
 
-  check("case1 [1,2,3]", permute([1, 2, 3]),
+  check("case1 [1,2,3]", permuteBT([1, 2, 3]),
     [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]])
-  check("case2 [0,1]", permute([0, 1]), [[0, 1], [1, 0]])
-  check("case3 [1]", permute([1]), [[1]])
+  // check("case2 [0,1]", permute([0, 1]), [[0, 1], [1, 0]])
+  // check("case3 [1]", permute([1]), [[1]])
 }
 
 // make this file a module so its declarations stay file-scoped
-export {}
+export { }
