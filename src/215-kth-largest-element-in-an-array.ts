@@ -1,6 +1,5 @@
 import { check } from "./utils/check"
 
-
 function findKthLargest(nums: number[], k: number): number {
   const targetIndex = nums.length - k
 
@@ -29,24 +28,19 @@ function findKthLargest(nums: number[], k: number): number {
   return quickSelect(0, nums.length - 1)
 };
 
-
 function findKthLargestMinHeap(nums: number[], k: number): number {
   class MinHeap {
     private heap: number[] = [];
-
     size() {
       return this.heap.length;
     }
-
     peek() {
       return this.heap[0];
     }
-
     push(value: number) {
       this.heap.push(value);
       this.bubbleUp();
     }
-
     pop() {
       if (this.heap.length === 0) return undefined;
 
@@ -60,7 +54,6 @@ function findKthLargestMinHeap(nums: number[], k: number): number {
 
       return min;
     }
-
     private bubbleUp() {
       let index = this.heap.length - 1;
 
@@ -77,7 +70,6 @@ function findKthLargestMinHeap(nums: number[], k: number): number {
         index = parent;
       }
     }
-
     private bubbleDown() {
       let index = 0;
       while (true) {
