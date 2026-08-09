@@ -54,6 +54,60 @@ function orangesRotting(grid: number[][]): number {
   return freshOrange ? -1 : rottenMin
 };
 
+function orangesRottingOpt(grid: number[][]): number {
+  const rows = grid.length;
+  const cols = grid[0].length;
+
+  const queue: [number, number][] = [];
+  let fresh = 0;
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (grid[r][c] === 2) queue.push([r, c]);
+      else if (grid[r][c] === 1) fresh++;
+    }
+  }
+
+  if (fresh === 0) return 0;
+
+  const dirs = [-1, 0, 1, 0, -1];
+
+  let head = 0;
+  let minutes = 0;
+
+  while (head < queue.length && fresh > 0) {
+    const levelSize = queue.length - head;
+
+    for (let i = 0; i < levelSize; i++) {
+
+      const [r, c] = queue[head++];
+
+      for (let d = 0; d < 4; d++) {
+
+        const nr = r + dirs[d];
+        const nc = c + dirs[d + 1];
+
+        if (
+          nr < 0 ||
+          nr >= rows ||
+          nc < 0 ||
+          nc >= cols ||
+          grid[nr][nc] !== 1
+        ) continue;
+
+        grid[nr][nc] = 2;
+        fresh--;
+
+        queue.push([nr, nc]);
+      }
+    }
+
+    minutes++;
+  }
+
+  return fresh === 0 ? minutes : -1;
+}
+
 const grid = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]
 const res = 4
 
@@ -66,13 +120,22 @@ const res2 = 0
 const grid3 = [[0]]
 const res3 = 0
 {
-  check(`${grid} - ${res}`, orangesRotting(grid), res)
+  //   check(`${grid} - ${res}`, orangesRotting(grid), res)
+  //
+  //   check(`${grid1} - ${res1}`, orangesRotting(grid1), res1)
+  //
+  //   check(`${grid2} - ${res2}`, orangesRotting(grid2), res2)
+  //
+  //   check(`${grid3} - ${res3}`, orangesRotting(grid3), res3)
+  //
+  check(`${grid} - ${res}`, orangesRottingOpt(grid), res)
 
-  check(`${grid1} - ${res1}`, orangesRotting(grid1), res1)
+  check(`${grid1} - ${res1}`, orangesRottingOpt(grid1), res1)
 
-  check(`${grid2} - ${res2}`, orangesRotting(grid2), res2)
+  check(`${grid2} - ${res2}`, orangesRottingOpt(grid2), res2)
 
   check(`${grid3} - ${res3}`, orangesRotting(grid3), res3)
+
 }
 
 export { }

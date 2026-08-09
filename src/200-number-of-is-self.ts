@@ -13,7 +13,7 @@ function numIslands(grid: string[][]): number {
 
     grid[y][x] = "0"
 
-    for (const [cy, cx] of directions) {
+    for (const [cx, cy] of directions) {
       const nx = x + cx
       const ny = y + cy
 
