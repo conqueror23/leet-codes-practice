@@ -5,7 +5,7 @@ function numIslands(grid: string[][]): number {
   const maxY = grid.length
   const maxX = grid[0].length
 
-  const bfs = (x: number, y: number) => {
+  const dfs = (x: number, y: number) => {
     const directions = [
       [0, 1], [0, -1],
       [1, 0], [-1, 0]
@@ -25,7 +25,7 @@ function numIslands(grid: string[][]): number {
         grid[ny][nx] === '0'
       )
         continue
-      bfs(nx, ny)
+      dfs(nx, ny)
     }
   }
 
@@ -34,7 +34,7 @@ function numIslands(grid: string[][]): number {
     for (let x = 0; x < maxX; x++) {
       const currentCell = grid[y][x]
       if (currentCell === "1") {
-        bfs(x, y)
+        dfs(x, y)
         num++
       }
     }
