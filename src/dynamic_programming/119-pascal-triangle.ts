@@ -13,11 +13,8 @@ function getRow(rowIndex: number): number[] {
   return rowAbove
 };
 
-
-
 // ---- tests ----
 {
-
   check("case1 rowIndex=0", getRow(0), [1])
   check("case2 rowIndex=1", getRow(1), [1, 1])
   check("case3 rowIndex=3", getRow(3), [1, 3, 3, 1])
