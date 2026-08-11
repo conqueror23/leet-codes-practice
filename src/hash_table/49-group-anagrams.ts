@@ -15,6 +15,26 @@ function groupAnagrams(strs: string[]): string[][] {
   return [...itemMap.values()].sort((a, b) => a.length - b.length)
 };
 
+function groupAnagramsSelf(strs: string[]): string[][] {
+  const groups = new Map<string, string[]>()
+  for (const word of strs) {
+    const frequency = new Array<number>(26).fill(0)
+    for (const char of word) {
+      const index = char.charCodeAt(0) - 97
+      frequency[index]++
+    }
+
+    const key = frequency.join("-")
+    const group = groups.get(key)
+    if (group) {
+      group.push(word)
+    } else {
+      groups.set(key, [word])
+    }
+  }
+  return Array.from(groups.values())
+}
+
 function groupAnagramsOpt(strs: string[]): string[][] {
   const groups = new Map<string, string[]>()
 
@@ -50,7 +70,9 @@ const strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
 const res = [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]]
 
 {
-  check(`${strs}-- ${res}`, groupAnagramsOpt(strs), res)
+  // check(`${strs}-- ${res}`, groupAnagramsOpt(strs), res)
+
+  check(`${strs}-- ${res}`, groupAnagramsSelf(strs), res)
 }
 
 export { }
