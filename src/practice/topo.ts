@@ -1,5 +1,5 @@
 import { number } from "zod/v4/core/regexes.cjs";
-import { check } from "./utils/check";
+import { check } from "../utils/check";
 
 function findDeploymentOrderOld(
   numsServices: number,
